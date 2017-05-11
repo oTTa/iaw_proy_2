@@ -171,11 +171,11 @@ return [
         /*
          * Application Service Providers...
          */
-        App\Providers\AppServiceProvider::class,
-        App\Providers\AuthServiceProvider::class,
-        // App\Providers\BroadcastServiceProvider::class,
-        App\Providers\EventServiceProvider::class,
-        App\Providers\RouteServiceProvider::class,
+        BuscoMoto\Providers\AppServiceProvider::class,
+        BuscoMoto\Providers\AuthServiceProvider::class,
+        // BuscoMoto\Providers\BroadcastServiceProvider::class,
+        BuscoMoto\Providers\EventServiceProvider::class,
+        BuscoMoto\Providers\RouteServiceProvider::class,
 
     ],
 
