@@ -67,7 +67,7 @@ return [
     'providers' => [
         'users' => [
             'driver' => 'eloquent',
-            'model' => BuscoMoto\User::class,
+            'model' => BuscoMoto\Usuario::class,
         ],
 
         // 'users' => [
