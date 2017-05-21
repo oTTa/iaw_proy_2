@@ -13,7 +13,8 @@ class Marca extends Model
      */
     protected $table = 'marca';
     protected $primaryKey = 'nombre';
-    protected $incrementing = false;
+    public $incrementing = false;
+    public $timestamps = false;
 
     /**
      * The attributes that are mass assignable.

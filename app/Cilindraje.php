@@ -13,7 +13,8 @@ class Cilindraje extends Model
      */
     protected $table = 'cilindraje';
     protected $primaryKey = 'cantidad';
-    protected $incrementing = false;
+    public $incrementing = false;
+    public $timestamps = false;
 
     /**
      * The attributes that are mass assignable.

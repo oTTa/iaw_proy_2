@@ -2,7 +2,7 @@
 
 namespace BuscoMoto\Http\Controllers\Auth;
 
-use BuscoMoto\Http\Controllers\Controller;
+use BuscoMoto\Http\Controllers\Controlador;
 use Illuminate\Foundation\Auth\AuthenticatesUsers;
 
 class LoginController extends Controller

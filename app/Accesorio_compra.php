@@ -12,6 +12,7 @@ class Accesorio_compra extends Model
      * @var string
      */
     protected $table = 'acceseorio_compra';
+    public $timestamps = false;
 
     /**
      * The attributes that are mass assignable.

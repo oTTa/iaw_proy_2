@@ -13,7 +13,8 @@ class Tipo extends Model
      */
     protected $table = 'tipo';
     protected $primaryKey = 'nombre';
-    protected $incrementing = false;
+    public $incrementing = false;
+    public $timestamps = false;
 
     /**
      * The attributes that are mass assignable.

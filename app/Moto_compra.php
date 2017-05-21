@@ -12,6 +12,7 @@ class Moto_compra extends Model
      * @var string
      */
     protected $table = 'moto_compra';
+    public $timestamps = false;
 
 
     /**
