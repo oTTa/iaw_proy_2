@@ -4,14 +4,14 @@ namespace BuscoMoto;
 
 use Illuminate\Database\Eloquent\Model;
 
-class Tipo extends Model
+class Tipo_accesorio extends Model
 {
     /**
      * The table associated with the model.
      *
      * @var string
      */
-    protected $table = 'tipo';
+    protected $table = 'tipo_accesorio';
     protected $primaryKey = 'nombre';
     public $incrementing = false;
     public $timestamps = false;

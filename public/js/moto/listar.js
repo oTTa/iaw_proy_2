@@ -83,16 +83,26 @@ function init_table(){
 	        			return('<i class="fa fa-eye-slash" style="font-size:26px" aria-hidden="true"></i>');
 	        	}
 	        },
-	        { 
-	        	data: 'created_at',
+	        { 	
 	        	render: function ( data, type, full, meta ) {
-	        		var año = data.substring(0, 4);
-	        		var mes = data.substring(5, 7);
-	        		var dia = data.substring(8, 10);
+	        		
+	        		var año = full.created_at.substring(0, 4);
+	        		var mes = full.created_at.substring(5, 7);
+	        		var dia = full.created_at.substring(8, 10);
 
-	        		var horario = data.substring(11, 16);
+	        		var horario = full.created_at.substring(11, 16);
 
-	        		return (dia+"/"+mes+"/"+año+" "+horario);
+	        		var creacion= "<p>"+dia+"/"+mes+"/"+año+" "+horario+"</p>"
+
+	        		año = full.updated_at.substring(0, 4);
+	        		mes = full.updated_at.substring(5, 7);
+	        		dia = full.updated_at.substring(8, 10);
+
+	        		horario = full.updated_at.substring(11, 16);
+
+	        		var modificacion= "<p>"+dia+"/"+mes+"/"+año+" "+horario+"</p>"
+
+	        		return (creacion+modificacion);
     			} 
 	        },
 	        { 

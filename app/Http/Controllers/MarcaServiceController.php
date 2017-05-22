@@ -32,11 +32,11 @@ class MarcaServiceController extends Controller
     }
 
         /**
-    * retorna los Tipos de motos almacenado en la BD
+    * retorna las marcas de motos almacenado en la BD que coincidan con id
     **/
     public function obtener($id){
         $marcas = Marca::where('nombre', 'like', '%' . $id . '%')->get();
-        if ($marcas){
+        if ($marcas->count()>0){
             $header =  array('status' => 'success', 'message' => 'Marcas obtenidas correctamente');
             $response = array('header' => $header, 'content' => $marcas);
             return response()->json($response);

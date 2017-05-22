@@ -34,6 +34,9 @@ Route::get('vendedores/editar/{id}', 'VendedorController@editar')->name('listar_
 Route::get('motos/colores/agregar/{id}', 'ColorController@crear')->name('crear_color');
 Route::get('motos/colores/listar/{id}', 'ColorController@listar')->name('listar_colores_moto');
 
+//accesorios
+Route::get('accesorios/crear', 'AccesorioController@crear')->name('crear_accesorio');
+Route::get('accesorios/listar', 'AccesorioController@listar')->name('listar_accesorio');
 
 ///////////////
 /* ajax json */
@@ -45,6 +48,11 @@ Route::get('service/vendedores/listar', 'VendedorServiceController@listar')->nam
 Route::post('service/vendedores/editar', 'VendedorServiceController@editar')->name('service_editar_vendedores');
 Route::get('service/vendedores/{id}', 'VendedorServiceController@obtener')->name('service_obtener_vendedor');
 
+//accesorio
+Route::post('service/accesorios/crear', 'AccesorioServiceController@crear')->name('service_crear_accesorio');
+Route::get('service/accesorios/listar', 'AccesorioServiceController@listar')->name('service_listar_accesorios');
+Route::get('service/accesorios/tipos/listar', 'AccesorioServiceController@listar_tipos_accesorios')->name('service_listar_tipos_accesorios');
+Route::get('service/accesorios/tipos/{id}', 'AccesorioServiceController@obtener_accesorio')->name('service_obtener_tipos_accesorios');
 //moto
 Route::post('service/motos/crear', 'MotoServiceController@crear')->name('service_crear_moto');
 Route::get('service/motos/listar', 'MotoServiceController@listar')->name('service_listar_motos');

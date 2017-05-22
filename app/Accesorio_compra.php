@@ -11,7 +11,7 @@ class Accesorio_compra extends Model
      *
      * @var string
      */
-    protected $table = 'acceseorio_compra';
+    protected $table = 'accesorio_compra';
     public $timestamps = false;
 
     /**

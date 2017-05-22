@@ -32,11 +32,11 @@ class TipoServiceController extends Controller
     }
 
     /**
-    * retorna los Tipos de motos almacenado en la BD
+    * retorna los Tipos de motos almacenado en la BD que coincidiad con id
     **/
     public function obtener($id){
         $tipos = Tipo::where('nombre', 'like', '%' . $id . '%')->get();
-        if ($tipos){
+        if ($tipos->count()>0){
             $header =  array('status' => 'success', 'message' => 'Tipo obtenido correctamente');
             $response = array('header' => $header, 'content' => $tipos);
             return response()->json($response);

@@ -17,7 +17,7 @@
                 <th>Video</th>
                 <th>Rating</th>
                 <th>Visible</th>
-                <th>Fecha Alta</th>
+                <th>Alta/Modificación</th>
                 <th>Acción</th>
             </tr>
     	</thead>

@@ -11,7 +11,7 @@ class Accesorio extends Model
      *
      * @var string
      */
-    protected $table = 'acceseorio';
+    protected $table = 'accesorio';
 
     /**
      * The attributes that are mass assignable.

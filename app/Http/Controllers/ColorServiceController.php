@@ -29,7 +29,6 @@ class ColorServiceController extends Controller
     **/
     public function agregar(Request $request){
         $id = $request->get('id');    
-        $data = $request->all();
         $moto = Moto::find($id);
         if ($moto){
             $color = $request->get('color');
