@@ -9,6 +9,7 @@ use BuscoMoto\Cilindraje;
 use BuscoMoto\Marca;
 use BuscoMoto\Tipo;
 use BuscoMoto\Vendedor;
+use BuscoMoto\Color;
 
 
 class MotoServiceController extends Controller
@@ -106,9 +107,12 @@ class MotoServiceController extends Controller
     * retorna las motos almacenado en la BD
     **/
     public function listar(Request $request){
-        $moto=Moto::all();
+        $motos=Moto::all();
+        foreach ($motos as $moto) {
+            $moto['colores']=Color::where('id_moto', $moto['id'])->get();
+        }
         $header =  array('status' => 'success', 'message' => 'Motos obtenidas correctamente');
-        $response = array('header' => $header, 'content' => $moto);
+        $response = array('header' => $header, 'content' => $motos);
         return response()->json($response);
     }
 
@@ -117,6 +121,7 @@ class MotoServiceController extends Controller
     **/
     public function obtener($id){
         $moto = Moto::find($id);
+        $moto['colores']=Color::where('id_moto', $id)->get();
         if ($moto){
             $header =  array('status' => 'success', 'message' => 'Moto obtenido correctamente');
             $response = array('header' => $header, 'content' => $moto);

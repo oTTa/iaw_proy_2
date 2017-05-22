@@ -27,6 +27,7 @@ $( document ).ready(function() {
 });
 
 function editarVendedor(marcador){
+	$("#error_general").show();
 	data = {
 		"id" : $("#id").val(),
 		"nombre": $("#nombre").val(),
@@ -56,6 +57,7 @@ function editarVendedor(marcador){
 	  }
 	  else{
 	  	$("#error_general").text(response.header.message)
+	  	$("#error_general").show();
 	  }
 	});
 }

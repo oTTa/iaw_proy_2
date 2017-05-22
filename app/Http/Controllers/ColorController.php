@@ -23,17 +23,18 @@ class ColorController extends MainController
     }
 
     /**
-    * Prepara la vista para crear una moto
+    * Prepara la vista para crear un nuevo color
     */
-    public function crear(){
+    public function crear($id){
     	$this->set_title("Crear Color Moto");
         $this->add_font_awesome();
     	$this->add_css("/css/template/formulario.css");
         $this->add_css("/css/admin/fondo.css");
-        $this->add_jqueryUI();
+        $this->add_color_picker();
         $this->add_js("/js/color/crear.js");
     	$data = $this->get_data();
-    	return view('moto.crear', $data);
+        $data['id']=$id;
+    	return view('color.crear', $data);
     }
 
      /**

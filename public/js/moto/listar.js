@@ -44,13 +44,19 @@ function init_table(){
 	        	data: 'marca' 
 	        },
 	        { 
-	        	data: 'cilindraje' 
+	        	data: 'cilindraje',
+	        	render: function ( data, type, full, meta ) {
+	        			return (data+"cc");
+	        	} 
 	        },
 	        { 
 	        	data: 'modelo' 
 	        },
 	        { 
-	        	data: 'precio' 
+	        	data: 'precio' ,
+	        	render: function ( data, type, full, meta ) {
+	        			return ("$"+data);
+	        	}
 	        },
 	        { 
 	        	data: 'url_video' ,

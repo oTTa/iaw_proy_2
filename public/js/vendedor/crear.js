@@ -26,6 +26,7 @@ $( document ).ready(function() {
 });
 
 function crearVendedor(marcador){
+	$("#error_general").hide();
 	data = {
 		"nombre": $("#nombre").val(),
 		"direccion": $("#direccion").val(),
@@ -54,6 +55,7 @@ function crearVendedor(marcador){
 	  }
 	  else{
 	  	$("#error_general").text(response.header.message)
+	  	$("#error_general").show();
 	  }
 	});
 }

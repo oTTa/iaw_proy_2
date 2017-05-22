@@ -20,7 +20,7 @@ class Color extends Model
      * @var array
      */
     protected $fillable = [
-       						'id', 'rgb', 'url_imagen', 'url_thumbail', 'id_moto'
+       						'id', 'rgb', 'url_imagen', 'url_thumbnail', 'id_moto'
        					];
 
     public function Moto()

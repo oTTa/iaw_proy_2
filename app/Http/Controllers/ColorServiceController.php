@@ -4,12 +4,10 @@ namespace BuscoMoto\Http\Controllers;
 
 use Illuminate\Http\Request;
 use BuscoMoto\Http\Controllers\Controller;
+use BuscoMoto\Color;
 use BuscoMoto\Moto;
-use BuscoMoto\Cilindraje;
-use BuscoMoto\Marca;
-use BuscoMoto\Tipo;
-use BuscoMoto\Vendedor;
 
+use Carbon\Carbon;
 
 class ColorServiceController extends Controller
 {
@@ -29,13 +27,36 @@ class ColorServiceController extends Controller
     /**
     * Crea un nuevo color almacenandolo en la base de datos
     **/
-    public function crear(Request $request){
+    public function agregar(Request $request){
+        $id = $request->get('id');    
         $data = $request->all();
+        $moto = Moto::find($id);
+        if ($moto){
+            $color = $request->get('color');
+            $imagen = $request->file('imagen');
+            $ruta = '/images/motos/';
+            $nombre = sha1(Carbon::now()).'.'.$imagen->guessExtension();
+            $imagen->move(getcwd().$ruta, $nombre);
+            $color = Color::create
+            (
+                [
+                'rgb' => $color,
+                'url_imagen' => $ruta.$nombre,
+                'url_thumbnail' => $ruta.$nombre,
+                'id_moto' => $id
+                ]
+            );
+            $header =  array('status' => 'success', 'message' => 'Color creado correctamente');
+            $response = array('header' => $header, 'content' => $color);
+            return response()->json($response);
+        }
+        else{
+            $header =  array('status' => 'false', 'message' => "No existe la moto");
+            $response = array('header' => $header, 'content' => array());
+            return response()->json($response);
+        }
         
 
-        $header =  array('status' => 'success', 'message' => 'Moto creada correctamente');
-        $response = array('header' => $header, 'content' => $data);
-    	return response()->json($response);
     }
 
     /**

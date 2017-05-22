@@ -70,6 +70,12 @@ class MainController extends Controller
  	public function add_jq_bootstrap_validation(){
  		array_push($this->js,"/js/jqBootstrapValidation/jqBootstrapValidation.js");
  	}
+
+ 	public function add_color_picker(){
+ 		array_push($this->css,"/css/colorpicker/color-picker.min.css");
+
+ 		array_push($this->js,"/js/colorpicker/color-picker.min.js");
+ 	}
  	
  	
 }

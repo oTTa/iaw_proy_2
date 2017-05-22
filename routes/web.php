@@ -26,6 +26,8 @@ Route::get('vendedores/crear', 'VendedorController@crear')->name('crear_vendedor
 Route::get('vendedores/listar', 'VendedorController@listar')->name('listar_vendedores');
 Route::get('vendedores/editar/{id}', 'VendedorController@editar')->name('listar_vendedores');
 
+//colores
+Route::get('motos/colores/agregar/{id}', 'ColorController@crear')->name('crear_color');
 
 /* web service json */
 
@@ -42,6 +44,9 @@ Route::post('service/motos/editar', 'MotoServiceController@editar')->name('servi
 Route::get('service/motos/{id}', 'MotoServiceController@obtener')->name('service_obtener_moto');
 Route::get('service/motos/eliminar/{id}', 'MotoServiceController@eliminar')->name('service_obtener_moto');
 Route::get('service/motos/visibilidad/{id}', 'MotoServiceController@cambiar_visibilidad')->name('service_obtener_moto');
+
+//color
+Route::post('service/motos/color/agregar', 'ColorServiceController@agregar')->name('service_agregar_color');
 
 //tipo
 Route::get('service/motos/tipos/listar', 'TipoServiceController@listar')->name('service_listar_tipos');
