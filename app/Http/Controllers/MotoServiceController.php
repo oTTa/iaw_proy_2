@@ -70,17 +70,17 @@ class MotoServiceController extends Controller
         $tipo = Tipo::find($data['tipo']);
 
         if (!$cilindraje){
-           Cilindraje::create(array('cantidad' => $data['cilindraje']));
-       }
-       if (!$tipo){
-           Tipo::create(array('nombre' => strtolower($data['tipo'])));
-       }
-       if (!$marca){
-           Marca::create(array('nombre' => strtolower($data['marca'])));
-       }
+         Cilindraje::create(array('cantidad' => $data['cilindraje']));
+     }
+     if (!$tipo){
+         Tipo::create(array('nombre' => strtolower($data['tipo'])));
+     }
+     if (!$marca){
+         Marca::create(array('nombre' => strtolower($data['marca'])));
+     }
 
-       $moto = Moto::find($data['id']);
-       if (!$moto){
+     $moto = Moto::find($data['id']);
+     if (!$moto){
         $header =  array('status' => 'false', 'message' => "No existe la moto que quieres editar");
         $response = array('header' => $header, 'content' => array());
         return response()->json($response);

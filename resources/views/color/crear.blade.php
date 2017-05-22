@@ -17,9 +17,9 @@
 							<input type="hidden" id="id_moto" value="{{$id}}">
 	                        
 							<div class="form-group required">
-								<label class="col-md-4 control-label">Imagen max: 20MB</label>
+								<label class="col-md-4 control-label">Imagen</label>
 								<div class="col-md-6">
-									<input type="file" class="form-control" id="imagen" name="imagen" accept="image/jpeg, image/png" required>
+									<input type="file" class="file" id="imagen" name="imagen" accept="image/jpeg, image/png" required>
 								</div>
 							</div>
 

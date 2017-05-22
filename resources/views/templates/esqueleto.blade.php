@@ -40,6 +40,7 @@
           <span class="icon-bar"></span>
           <span class="icon-bar"></span>
         </button>
+        <a class="navbar-brand" href="#">BuscoMoto</a>
         <a class="navbar-brand" href="#"><img style="max-width:90px; margin-top: -12px;" src="<?php echo url('/')."/images/motoLogo.png" ?>"></a>
       </div>
       <div id="navbar" class="collapse navbar-collapse">

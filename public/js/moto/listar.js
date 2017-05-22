@@ -100,6 +100,8 @@ function init_table(){
 	        	render: function ( data, type, full, meta ) {
 	        		  html ='<a href="'+base_url+'/motos/editar/'+data+'" style="float:right;"><i class="fa fa-pencil"  aria-hidden="true"></i> Editar</a><br/>';
 	        		  html += '<a href="'+base_url+'/motos/colores/agregar/'+data+'" style="float:right;"><i class="fa fa-picture-o"  aria-hidden="true"></i> Agregar color</a><br/>';
+	        		  html += '<a href="'+base_url+'/motos/colores/listar/'+data+'" style="float:right;"><i class="fa fa-picture-o"  aria-hidden="true"></i> Colores</a><br/>';
+	        		  html += '<a href="'+base_url+'/motos/vendedores/listar/'+data+'" style="float:right;"><i class="fa fa-briefcase"  aria-hidden="true"></i> Vendedores</a><br/>';
 	        		  html += '<div onclick="preparar_borrar('+data+')" style="cursor:pointer; color:red; float:right;" data-toggle="modal" data-target="#modal_borrar" ><i class="fa fa-times" aria-hidden="true"></i> Borrar</div></br>';
   	        		  html += '<div onclick="preparar_visibilidad('+data+')" data-toggle="modal" data-target="#modal_visibilidad" style="cursor:pointer; color:green; float:right;"><i class="fa fa-eye" aria-hidden="true"></i> Cambiar visibilidad</div></br>';
 

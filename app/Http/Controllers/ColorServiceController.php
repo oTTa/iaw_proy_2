@@ -55,97 +55,32 @@ class ColorServiceController extends Controller
             $response = array('header' => $header, 'content' => array());
             return response()->json($response);
         }
-        
-
     }
 
     /**
-    * Edita una moto almacenandolo en la base de datos
+    * Eliminar un color
     **/
-    public function editar(Request $request){
-        $data = $request->all();
+    public function eliminar($id){  
+        $color = Color::find($id);
+        if ($color){
+            $ruta = getcwd().$color->url_imagen;
+            if(file_exists($ruta))
+            {
+                unlink(realpath($ruta));
+            }
+            $ruta = getcwd().$color->url_thumbnail;
+            if(file_exists($ruta))
+            {
+                unlink(realpath($ruta));
+            }
 
-        $data['marca']=strtolower(trim($data['marca']));
-        $data['tipo']=strtolower(trim($data['tipo']));
-
-        $cilindraje = Cilindraje::find($data['cilindraje']);
-        $marca = Marca::find($data['marca']);
-        $tipo = Tipo::find($data['tipo']);
-
-        if (!$cilindraje){
-           Cilindraje::create(array('cantidad' => $data['cilindraje']));
-       }
-       if (!$tipo){
-           Tipo::create(array('nombre' => strtolower($data['tipo'])));
-       }
-       if (!$marca){
-           Marca::create(array('nombre' => strtolower($data['marca'])));
-       }
-
-       $moto = Moto::find($data['id']);
-       if (!$moto){
-        $header =  array('status' => 'false', 'message' => "No existe la moto que quieres editar");
-        $response = array('header' => $header, 'content' => array());
-        return response()->json($response);
-    }
-    else{
-        $moto->tipo = $data['tipo'];
-        $moto->marca = $data['marca'];
-        $moto->cilindraje = $data['cilindraje'];
-        $moto->modelo = $data['modelo'];
-        $moto->url_video = $data['url_video'];
-        $moto->rating = $data['rating'];
-        $moto->precio = $data['precio'];
-        $moto->save();
-
-        $header =  array('status' => 'success', 'message' => 'Cambios en la moto realizados correctamente');
-        $response = array('header' => $header, 'content' => $moto);
-        return response()->json($response);
-    }
-}
-
-
-
-    /**
-    * retorna las motos almacenado en la BD
-    **/
-    public function listar(Request $request){
-        $moto=Moto::all();
-        $header =  array('status' => 'success', 'message' => 'Motos obtenidas correctamente');
-        $response = array('header' => $header, 'content' => $moto);
-        return response()->json($response);
-    }
-
-    /**
-    * retorna la moto id
-    **/
-    public function obtener($id){
-        $moto = Moto::find($id);
-        if ($moto){
-            $header =  array('status' => 'success', 'message' => 'Moto obtenido correctamente');
-            $response = array('header' => $header, 'content' => $moto);
-            return response()->json($response);
-        }
-        else{
-            $header =  array('status' => 'false', 'message' => "No existe la moto");
-            $response = array('header' => $header, 'content' => array());
-            return response()->json($response);
-        }
-    }
-
-    /**
-    * elimina la moto id
-    **/
-    public function eliminar($id){
-        $moto = Moto::find($id);
-        if ($moto){
-            Moto::destroy($id);
-            $header =  array('status' => 'success', 'message' => 'Moto eliminada correctamente');
+            Color::destroy($id);
+            $header =  array('status' => 'success', 'message' => 'Color borrado correctamente');
             $response = array('header' => $header, 'content' => array());
             return response()->json($response);
         }
         else{
-            $header =  array('status' => 'false', 'message' => "No existe la moto");
+            $header =  array('status' => 'false', 'message' => "No existe el color");
             $response = array('header' => $header, 'content' => array());
             return response()->json($response);
         }

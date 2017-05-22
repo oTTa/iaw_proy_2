@@ -15,6 +15,10 @@ Route::get('/', function () {
     return view('welcome');
 });
 
+/////////////////////////
+/* controladores-vista */
+/////////////////////////
+
 //motos
 Route::get('motos/compra', 'CompraController@compra')->name('seleccionar_moto');
 Route::get('motos/crear', 'MotoController@crear')->name('crear_moto');
@@ -28,8 +32,12 @@ Route::get('vendedores/editar/{id}', 'VendedorController@editar')->name('listar_
 
 //colores
 Route::get('motos/colores/agregar/{id}', 'ColorController@crear')->name('crear_color');
+Route::get('motos/colores/listar/{id}', 'ColorController@listar')->name('listar_colores_moto');
 
-/* web service json */
+
+///////////////
+/* ajax json */
+///////////////
 
 //vendedores
 Route::post('service/vendedores/crear', 'VendedorServiceController@crear')->name('service_crear_vendedor');
@@ -47,12 +55,15 @@ Route::get('service/motos/visibilidad/{id}', 'MotoServiceController@cambiar_visi
 
 //color
 Route::post('service/motos/color/agregar', 'ColorServiceController@agregar')->name('service_agregar_color');
+Route::get('service/color/borrar/{id_color}', 'ColorServiceController@eliminar')->name('service_eliminar_color');
 
 //tipo
 Route::get('service/motos/tipos/listar', 'TipoServiceController@listar')->name('service_listar_tipos');
 Route::get('service/motos/tipos/{id}', 'TipoServiceController@obtener')->name('service_obtener_tipos');
+
 //marca
 Route::get('service/motos/marcas/listar', 'MarcaServiceController@listar')->name('service_listar_marcas');
 Route::get('service/motos/marcas/{id}', 'MarcaServiceController@obtener')->name('service_obtener_marcas');
+
 //cilindraje
 Route::get('service/motos/cilindrajes/listar', 'CilindrajeServiceController@listar')->name('service_listar_cilindrajes');
