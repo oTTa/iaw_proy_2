@@ -12,6 +12,7 @@ class CompraController extends MainController
     public function __construct()
     {
         $this->middleware('guest');
+        $this->middleware('auth');
         $this->add_jquery();
         $this->add_bootstrap();
     }
@@ -21,6 +22,7 @@ class CompraController extends MainController
     	$this->add_bootstrap_select();
     	$this->add_css("/css/compra/elegir_moto.css");
     	$this->add_js("/js/compra/motos.js");
+        $this->add_font_awesome();
     	$data = $this->get_data();
     	return view('compra.elegir_moto', $data);
     }

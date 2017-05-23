@@ -49,6 +49,7 @@
         
       </div>
       <div id="navbar" class="collapse navbar-collapse">
+    @if (Auth::user()['tipo'] == 'admin')
         <ul class="nav navbar-nav">
           <li class="dropdown">
             <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">Vendedores <span class="caret"></span></a>
@@ -71,46 +72,67 @@
               <li><a href="<?php echo url('/')."/accesorios/listar" ?>">Listar</a></li>
             </ul>
           </li>
-
+  @endif
         </ul>
-        <ul class="nav navbar-nav navbar-right">
-          
-          <li class="dropdown"><a href="#" class="dropdown-toggle" data-toggle="dropdown">Perfil
-            <b class="caret"></b></a>
-            <ul class="dropdown-menu">
-              <li>
-                <div class="navbar-content">
-                  <div class="row">
-                    <div class="col-md-5">
-                      <img id="id_profile"
-                      alt="Alternate Text" class="img-responsive" />
-                    </div>
-                    <div class="col-md-7">
-                      <span id="id_nombre"></span>
-                      <p id="id_mail" class="text-muted small">
-                      </p>
-                      <div class="divider">
-                      </div>
-                      <a href="#" class="btn btn-primary btn-sm active" data-toggle="modal" data-target="#perfil">Ver perfil</a>
-                      <a href="#" class="btn btn-primary btn-sm active" data-toggle="modal" data-target="#ranking">Compras</a>
-                    </div>
-                  </div>
-                </div>
-                <div class="navbar-footer">
-                  <div class="navbar-footer-content">
-                    <div class="row">
-                      <div class="col-md-6">
 
+        <ul class="nav navbar-nav navbar-right">
+
+          @if (Auth::check())
+            <li class="dropdown"><a href="#" class="dropdown-toggle" data-toggle="dropdown">Perfil
+              <b class="caret"></b></a>
+              <ul class="dropdown-menu">
+          
+                <li>
+                  <div class="navbar-content">
+                    <div class="row">
+                      <div class="col-md-5">
+                        <img id="id_profile" src="{{url('/')}}{{Auth::user()['url_foto_perfil']}}" 
+                        class="img-responsive" />
                       </div>
-                      <div class="col-md-6">
-                        <a href="../index.html" class="btn btn-default btn-sm pull-right">Cerrar sesión</a>
+                      <div class="col-md-7">
+                        <span id="id_nombre">{{Auth::user()['nombre']}}</span>
+                        <p id="id_mail" class="text-muted small">
+                        {{Auth::user()['email']}}
+                        </p>
+                        <div class="divider">
+                        </div>
+                        <a href="#" class="btn btn-primary btn-sm active" data-toggle="modal" data-target="#perfil">Ver perfil</a>
+                        <a href="#" class="btn btn-primary btn-sm active" data-toggle="modal" data-target="#ranking">Compras</a>
                       </div>
                     </div>
                   </div>
-                </div>
-              </li>
-            </ul>
-          </li>
+                  <div class="navbar-footer">
+                    <div class="navbar-footer-content">
+                      <div class="row">
+                        <div class="col-md-6">
+
+                        </div>
+                        <div class="col-md-6">
+                          <a href="{{url('/')}}/service/usuarios/salir" class="btn btn-default btn-sm pull-right">Cerrar sesión</a>
+                        </div>
+                      </div>
+                    </div>
+                  </div>
+                </li>
+              </ul>
+            </li>
+
+            @else
+
+            <li class="dropdown"><a href="#" class="dropdown-toggle" data-toggle="dropdown">LogIn
+              <b class="caret"></b></a>
+              <ul class="dropdown-menu">
+               <li>
+                        <a href="<?php echo url('/')."/registrarse" ?>">Registrarse</a>
+                </li>
+                <li>
+                        <a href="<?php echo url('/')."/login" ?>">Iniciar sesión</a>
+                </li>
+              </ul>
+            </li>
+
+           @endif
+
         </ul>
 
       </div>

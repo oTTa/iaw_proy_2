@@ -99,8 +99,7 @@
         <div class="col-md-12" id="botones">
           <button type="button" class="col-md-6 col-xs-12 btn btn-danger" onclick="limpiar_busqueda();" ><span class="glyphicon glyphicon-erase" aria-hidden="true"></span> Nueva busqueda</button>
           <a href="#map"  class="col-md-6 col-xs-12 btn btn-info" ><span class="glyphicon glyphicon-map-marker" aria-hidden="true"></span> Ver puntos de venta</a>
-          <a id="descargar_json"  class="col-md-6 col-xs-12 btn btn-default" download="moto.json"><span class="glyphicon glyphicon-download" aria-hidden="true"></span> Descargar JSON</a>
-          <a id="descargar_moto" class="col-md-6 col-xs-12 btn btn-success"><span class="glyphicon glyphicon-download" aria-hidden="true"></span> Descargar Moto</a>
+          <button id="comprar" style="margin-top: 10px;" class="col-md-12 col-xs-12 btn btn-warning"> <i class="fa fa-shopping-cart" aria-hidden="true"></i> Comprar</a>
        </div>
         
         <hr>

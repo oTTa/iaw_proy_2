@@ -3,7 +3,7 @@
 use Illuminate\Database\Seeder;
 use BuscoMoto\Usuario;
 
-class DatabaseSeeder extends Seeder
+class AdminTableSeeder extends Seeder
 {
     /**
      * Run the database seeds.
@@ -12,14 +12,13 @@ class DatabaseSeeder extends Seeder
      */
     public function run()
     {
-    	//$this->call('AdminTableSeeder');
     	$user = Usuario::create
             (
                     [
                     'nombre' => 'admin',
                     'apellido' => 'admin',
                     'email' => 'admin@admin.com',
-                    'url_foto_perfil' => '/images/avatar_admin.jpg',
+                    'url_foto_perfil' => '/public/images/avatar_admin.jpg',
                     'password' => bcrypt('admin'),
                     'tipo' => 'admin',
                     'fecha_nacimiento' => '1990-01-01' 

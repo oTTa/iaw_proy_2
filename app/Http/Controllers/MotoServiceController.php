@@ -10,7 +10,6 @@ use BuscoMoto\Marca;
 use BuscoMoto\Tipo;
 use BuscoMoto\Vendedor;
 use BuscoMoto\Color;
-use Illuminate\Support\Facades\DB;
 
 
 class MotoServiceController extends Controller

@@ -19,15 +19,21 @@ Route::get('/', function () {
 /* controladores-vista */
 /////////////////////////
 
+//usuario
+Route::get('registrarse', 'UsuarioController@formulario_registrase')->name('form_registrarse');
+Route::get('login', 'UsuarioController@formulario_login')->name('form_login');
+
+
 //compra
 Route::get('/', 'CompraController@compra')->name('seleccionar_moto');
+Route::get('/home', 'CompraController@compra')->name('seleccionar_moto');
 
 //motos
 Route::get('motos/compra', 'CompraController@compra')->name('seleccionar_moto');
 Route::get('motos/crear', 'MotoController@crear')->name('crear_moto');
 Route::get('motos/listar', 'MotoController@listar')->name('listar_motos');
 Route::get('motos/editar/{id}', 'MotoController@editar')->name('listar_motos');
-Route::get('motos/vendedores/{id}', 'MotoController@vendedores')->name('listar_vendedores_moto');
+Route::get('motos/vendedores/listar/{id}', 'MotoController@vendedores')->name('listar_vendedores_moto');
 
 //vendedores
 Route::get('vendedores/crear', 'VendedorController@crear')->name('crear_vendedor');
@@ -46,6 +52,11 @@ Route::get('accesorios/listar', 'AccesorioController@listar')->name('listar_acce
 ///////////////
 /* ajax json */
 ///////////////
+
+//usuario
+Route::post('/service/usuarios/registrarse', 'UsuarioController@registrase')->name('registrarse');
+Route::post('/service/usuarios/login', 'UsuarioController@authenticate')->name('login');
+Route::get('/service/usuarios/salir', 'UsuarioController@salir')->name('logout');
 
 //vendedores
 Route::post('service/vendedores/crear', 'VendedorServiceController@crear')->name('service_crear_vendedor');

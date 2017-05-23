@@ -1,404 +1,29 @@
-var motos_json = {
-				"motos":[
-						    {
-								id: 1,
-								tipo: "Naked",
-								marca: "Yamaha",
-								cilindraje: 125,
-								modelo: "YBR125 ED",
-								colores: ["#ffffff","#000000","#cc0000"],
-								rating: 3,
-								precio: 80000,
-								url_imagenes : ["images/motos/naked/yamaha/125/YBR125_ED/blanco.jpg",
-												"images/motos/naked/yamaha/125/YBR125_ED/negro.jpg",
-												"images/motos/naked/yamaha/125/YBR125_ED/rojo.jpg"
-											   ],
-								url_video : "https://www.youtube.com/embed/vUJ4SeEUMpg",
-								vendedores : [
-											{
-												id: 1,
-												nombre:"ASSEN MOTOS",
-												direccion:"Brandsen 234",
-												telefono:"0291 456-5606",
-												latitud: -38.720988,
-												longitud: -62.256835
-											},
-											{
-												id:2,
-												nombre:"EUROMOTO",
-												direccion:"Av. Parchappe 1250",
-												telefono:"0291 455-7067",
-												latitud: -38.724319,
-												longitud:  -62.251674
-											},
-											{
-												id:3,
-												nombre:"KANDO",
-												direccion:"Av. Gral. D. Cerri 765",
-												telefono:"0291 452-8726",
-												latitud: -38.722134,
-												longitud: -62.255279
-											}
-											]
-							},
-							{
-								id: 2,
-								tipo: "Touring",
-								marca: "BMW",
-								cilindraje: 800,
-								modelo:  "F 800 Gs",
-								colores: ["#cccccc","#ffffff","#cc0000"],
-								rating: 5,
-								precio: 250000,
-								url_imagenes : ["images/motos/touring/bmw/800/F_800_Gs/blanco_metalizado.jpg",
-												"images/motos/touring/bmw/800/F_800_Gs/blanco.jpg",
-												"images/motos/touring/bmw/800/F_800_Gs/rojo.jpg"
-											   ],
-								url_video : "https://www.youtube.com/embed/BaQiI3vkJdA",
-								vendedores : [
-											{
-												id:4,
-												nombre:"MotoZone",
-												direccion:"Villarino 555",
-												telefono:"0291 451-6792",
-												latitud: -38.728063,
-												longitud: -62.268129
-											}, 
-											{
-												id:3,
-												nombre:"KANDO",
-												direccion:"Av. Gral. D. Cerri 765",
-												telefono:"0291 452-8726",
-												latitud: -38.722134,
-												longitud: -62.255279
-											}
-											]
-							},
-							{
-								id: 3,
-								tipo: "Scooters",
-								marca: "Yamaha",
-								cilindraje: 110,
-								modelo:  "New Crypton",
-								colores: ["#0000ff","#ffffff","#ff0000","#000000"],
-								rating: 3,
-								precio: 24900,
-								url_imagenes : ["images/motos/scooters/yamaha/110/new_crypton/azul.jpg",
-												"images/motos/scooters/yamaha/110/new_crypton/blanco.jpg",
-												"images/motos/scooters/yamaha/110/new_crypton/rojo.jpg",
-												"images/motos/scooters/yamaha/110/new_crypton/negro.jpg"
-											   ],
-								url_video : "https://www.youtube.com/embed/cTQgJauMgTY",
-								vendedores : [
-											{
-												id:4,
-												nombre:"MotoZone",
-												direccion:"Villarino 555",
-												telefono:"0291 451-6792",
-												latitud: -38.728063,
-												longitud: -62.268129
-											}, 
-											{
-												id:3,
-												nombre:"KANDO",
-												direccion:"Av. Gral. D. Cerri 765",
-												telefono:"0291 452-8726",
-												latitud: -38.722134,
-												longitud: -62.255279
-											}
-											]
-							},
-							{
-								id: 4,
-								tipo: "Chopper",
-								marca: "Harley Davidson",
-								cilindraje: 883,
-								modelo:  "Iron",
-								colores: ["#ffdf80","#000000","#ff0000"],
-								rating: 4,
-								precio: 299999,
-								url_imagenes : ["images/motos/chopper/Harley_Davidson/883/IRON_883/crema.jpg",
-												"images/motos/chopper/Harley_Davidson/883/IRON_883/negro.jpg",
-												"images/motos/chopper/Harley_Davidson/883/IRON_883/rojo.jpg"
-											   ],
-								url_video : "https://www.youtube.com/embed/NcBqvsiw_Yc",
-								vendedores : [
-											{
-												id:4,
-												nombre:"MotoZone",
-												direccion:"Villarino 555",
-												telefono:"0291 451-6792",
-												latitud: -38.728063,
-												longitud: -62.268129
-											}, 
-											{
-												id:3,
-												nombre:"KANDO",
-												direccion:"Av. Gral. D. Cerri 765",
-												telefono:"0291 452-8726",
-												latitud: -38.722134,
-												longitud: -62.255279
-											},
-											{
-												id:5,
-												nombre:"AUTRAL MOTOS",
-												direccion:"Alvarado 824",
-												telefono:"0291 452-1800",
-												latitud: -38.708323,
-												longitud: -62.271433
-											}
-											]
-							},
-							{
-								id: 5,
-								tipo: "Chopper",
-								marca: "Harley Davidson",
-								cilindraje: 1450,
-								modelo:  "Road King",
-								colores: ["#0000ff","#cccccc","#ff0000","#1a1a1a"],
-								rating: 5,
-								precio: 899999,
-								url_imagenes : ["images/motos/chopper/Harley_Davidson/1450/ROAD_KING/azul.jpg",
-												"images/motos/chopper/Harley_Davidson/1450/ROAD_KING/gris.jpg",
-												"images/motos/chopper/Harley_Davidson/1450/ROAD_KING/rojo.jpg",
-												"images/motos/chopper/Harley_Davidson/1450/ROAD_KING/negro_opaco.jpeg"
-											   ],
-								url_video : "https://www.youtube.com/embed/8Xrk8plkTmA",
-								vendedores : [
-											{
-												id:4,
-												nombre:"MotoZone",
-												direccion:"Villarino 555",
-												telefono:"0291 451-6792",
-												latitud: -38.728063,
-												longitud: -62.268129
-											}, 
-											{
-												id:3,
-												nombre:"KANDO",
-												direccion:"Av. Gral. D. Cerri 765",
-												telefono:"0291 452-8726",
-												latitud: -38.722134,
-												longitud: -62.255279
-											},
-											{
-												id:5,
-												nombre:"AUTRAL MOTOS",
-												direccion:"Alvarado 824",
-												telefono:"0291 452-1800",
-												latitud: -38.708323,
-												longitud: -62.271433
-											}
-											]
-							},
-							{
-								id: 6,
-								tipo: "Chopper",
-								marca: "Suzuki",
-								cilindraje: 125,
-								modelo:  "GN 125",
-								colores: ["#0000ff","#000000"],
-								rating: 3,
-								precio: 32499,
-								url_imagenes : ["images/motos/chopper/Suziki/125/Gn_125/azul.png",
-												"images/motos/chopper/Suziki/125/Gn_125/negro.jpg",
-											   ],
-								url_video : "https://www.youtube.com/embed/NU8O5oYpISw",
-								vendedores : [
-											{
-												id:4,
-												nombre:"MotoZone",
-												direccion:"Villarino 555",
-												telefono:"0291 451-6792",
-												latitud: -38.728063,
-												longitud: -62.268129
-											}, 
-											{
-												id:3,
-												nombre:"KANDO",
-												direccion:"Av. Gral. D. Cerri 765",
-												telefono:"0291 452-8726",
-												latitud: -38.722134,
-												longitud: -62.255279
-											},
-											{
-												id:5,
-												nombre:"AUTRAL MOTOS",
-												direccion:"Alvarado 824",
-												telefono:"0291 452-1800",
-												latitud: -38.708323,
-												longitud: -62.271433
-											}
-											]
-							},
-							{
-								id: 7,
-								tipo: "Cross",
-								marca: "Yamaha",
-								cilindraje: 125,
-								modelo:  "XTZ 125",
-								colores: ["#0000ff","#000000","#ffffff"],
-								rating: 3,
-								precio: 46500,
-								url_imagenes : ["images/motos/cross/yamaha/125/xtz125/azul.jpg",
-												"images/motos/cross/yamaha/125/xtz125/negro.jpg",
-												"images/motos/cross/yamaha/125/xtz125/blanco.jpg"
-											   ],
-								url_video : "https://www.youtube.com/embed/7ozKtKojWe8",
-								vendedores : [
-											{
-												id:4,
-												nombre:"MotoZone",
-												direccion:"Villarino 555",
-												telefono:"0291 451-6792",
-												latitud: -38.728063,
-												longitud: -62.268129
-											}, 
-											{
-												id:3,
-												nombre:"KANDO",
-												direccion:"Av. Gral. D. Cerri 765",
-												telefono:"0291 452-8726",
-												latitud: -38.722134,
-												longitud: -62.255279
-											},
-											{
-												id: 1,
-												nombre:"ASSEN MOTOS",
-												direccion:"Brandsen 234",
-												telefono:"0291 456-5606",
-												latitud: -38.720988,
-												longitud: -62.256835
-											}
-											]
-							},
-							{
-								id: 8,
-								tipo: "Scooters",
-								marca: "Suzuki",
-								cilindraje: 125,
-								modelo:  "AN125",
-								colores: ["#b3ecff","#c6c5c4","#000000"],
-								rating: 2,
-								precio: 40790,
-								url_imagenes : ["images/motos/scooters/suzuki/125/AN125/celeste.jpg",
-												"images/motos/scooters/suzuki/125/AN125/gris.jpg",
-												"images/motos/scooters/suzuki/125/AN125/negro.jpg"
-											   ],
-								url_video : "https://www.youtube.com/embed/CJNbDcFzMnM",
-								vendedores : [
-											{
-												id:5,
-												nombre:"AUTRAL MOTOS",
-												direccion:"Alvarado 824",
-												telefono:"0291 452-1800",
-												latitud: -38.708323,
-												longitud: -62.271433
-											}, 
-											{
-												id:3,
-												nombre:"KANDO",
-												direccion:"Av. Gral. D. Cerri 765",
-												telefono:"0291 452-8726",
-												latitud: -38.722134,
-												longitud: -62.255279
-											},
-											{
-												id: 1,
-												nombre:"ASSEN MOTOS",
-												direccion:"Brandsen 234",
-												telefono:"0291 456-5606",
-												latitud: -38.720988,
-												longitud: -62.256835
-											}
-											]
-							},
-							{
-								id: 9,
-								tipo: "Cross",
-								marca: "Honda",
-								cilindraje: 250,
-								modelo:  "XR 250 Tornado",
-								colores: ["#ffffff","#000000","#cc0000"],
-								rating: 4,
-								precio: 84000,
-								url_imagenes : ["images/motos/cross/honda/250/XR250_tornado/blanco.jpg",
-												"images/motos/cross/honda/250/XR250_tornado/negro.jpg",
-												"images/motos/cross/honda/250/XR250_tornado/rojo.jpg"
-											   ],
-								url_video : "https://www.youtube.com/embed/a2btxvIq0Kc",
-								vendedores : [
-											{
-												id:5,
-												nombre:"AUTRAL MOTOS",
-												direccion:"Alvarado 824",
-												telefono:"0291 452-1800",
-												latitud: -38.708323,
-												longitud: -62.271433
-											}, 
-											{
-												id:3,
-												nombre:"KANDO",
-												direccion:"Av. Gral. D. Cerri 765",
-												telefono:"0291 452-8726",
-												latitud: -38.722134,
-												longitud: -62.255279
-											},
-											{
-												id: 1,
-												nombre:"ASSEN MOTOS",
-												direccion:"Brandsen 234",
-												telefono:"0291 456-5606",
-												latitud: -38.720988,
-												longitud: -62.256835
-											},
-											{
-												id:4,
-												nombre:"MotoZone",
-												direccion:"Villarino 555",
-												telefono:"0291 451-6792",
-												latitud: -38.728063,
-												longitud: -62.268129
-											},
-											]
-							},
-							{
-								id: 10,
-								tipo: "Naked",
-								marca: "Suzuki",
-								cilindraje: 125,
-								modelo:  "EN125-2a",
-								colores: ["#000000","#cc0000","#ffff00"],
-								rating: 3,
-								precio: 84000,
-								url_imagenes : [
-												"images/motos/naked/suzuki/125/EN_125/negro.jpg",
-												"images/motos/naked/suzuki/125/EN_125/rojo.jpg",
-												"images/motos/naked/suzuki/125/EN_125/amarillo.jpg"
-											   ],
-								url_video : "https://www.youtube.com/embed/rV7T_YNLy7c",
-								vendedores : [
-											{
-												id:5,
-												nombre:"AUTRAL MOTOS",
-												direccion:"Alvarado 824",
-												telefono:"0291 452-1800",
-												latitud: -38.708323,
-												longitud: -62.271433
-											}, 
-											{
-												id:3,
-												nombre:"KANDO",
-												direccion:"Av. Gral. D. Cerri 765",
-												telefono:"0291 452-8726",
-												latitud: -38.722134,
-												longitud: -62.255279
-											}
-											
-											]
-							}
-						]
-			};
+var motos_json ;
+
+var settings = {
+  "async": true,
+  "crossDomain": true,
+  "url": "http://iawproy2.com/service/motos/listar",
+  "method": "GET",
+  "headers": {}
+}
+
+$.ajax(settings).done(function (response) {
+  motos_json=response.content;
+  cargar_datos(motos_json);
+    $('#tipo').change(function () {
+    	filtrar(motos_json);
+    });
+    $('#marca').change(function () {
+    	filtrar(motos_json);
+    });
+    $('#cilindraje').change(function () {
+    	filtrar(motos_json);
+    });
+    $('#modelo').change(function () {
+    	filtrar(motos_json);
+    });
+});
 
 
 var color_select = 0;
@@ -410,23 +35,11 @@ var tipos = [];
 var cilindrajes = [];
 
 $(document).ready(function() {
-	cargar_datos(motos_json.motos);
-    $('#tipo').change(function () {
-    	filtrar(motos_json.motos);
-    });
-    $('#marca').change(function () {
-    	filtrar(motos_json.motos);
-    });
-    $('#cilindraje').change(function () {
-    	filtrar(motos_json.motos);
-    });
-    $('#modelo').change(function () {
-    	filtrar(motos_json.motos);
-    });
+	
 });
 
 function cargar_datos(){
-	var motos = motos_json.motos;
+	var motos = motos_json;
 	$("#tipo").empty();
 	$("#marca").empty();
 	$("#cilindraje").empty();
@@ -504,6 +117,7 @@ function filtrar(motos){
 
 	if (modelo==""){
 		$("#modelo").append('<option data-tokens=""></option>');
+		console.log(motos);
 
 		for (var i = 0; i < motos.length; i++) {
 			if (cumple_filtrado(motos[i], tipo, marca, cilindraje)){
@@ -542,7 +156,7 @@ function filtrar(motos){
 				moto_select=motos[i];
 
 				$("#1").slideUp(200,function() {
-					  	$("#imagen_moto").attr("src", moto_select.url_imagenes[color_select]);
+					  	$("#imagen_moto").attr("src", moto_select.colores[color_select].url_thumbnail);
 					    $('#1').slideDown(200,function(){
 					    	$('#1').css('display', '');
 					    });
@@ -562,13 +176,13 @@ function filtrar(motos){
 
 				for (var j = 0; j < motos[i].colores.length; j++) {
 					$("#colores").append('<div id="color'+j+'" data-color="'+j+'" class="box_color"></div>');
-					$("#color"+j).css('background-color', motos[i].colores[j]);
+					$("#color"+j).css('background-color', motos[i].colores[j].rgb);
 
 					$("#color"+j).click(function() {
 					  var color= $(this).data("color");
 
 					  $("#1").slideUp(200,function() {
-					  	$("#imagen_moto").attr("src", moto_select.url_imagenes[color]);
+					  	$("#imagen_moto").attr("src", moto_select.colores[color].url_thumbnail);
 					    $('#1').slideDown(200,function(){
 					    	$('#1').css('display', '');
 					    });
@@ -578,7 +192,7 @@ function filtrar(motos){
 					  
 					  $(this).css('border', '3px solid #009999');
 					  $("#color"+color_select).css('border', '1px solid black');
-					  $("#descargar_moto").attr('href',moto_select.url_imagenes[color]);
+					  //$("#descargar_moto").attr('href',moto_select.colores[color].rgb);
 					  color_select= color;
 					});
 
@@ -586,7 +200,7 @@ function filtrar(motos){
 						color_select = 0;
 						$("#color"+0).css('border', '3px solid #009999');
 						$("#descargar_moto").attr('download',true);
-						$("#descargar_moto").attr('href',moto_select.url_imagenes[0]);
+						$("#descargar_moto").attr('href',moto_select.colores[0].url_thumbnail);
 					}
 				}
 
@@ -620,7 +234,7 @@ function agregar_venderdores_mapa(vendedores){
 	map = new google.maps.Map(mapCanvas, mapOptions);
 	var html;
 	var icon = {
-		    url: "images/marker_moto.png", // url
+		    url: base_url+"/images/marker_moto.png", // url
 		    scaledSize: new google.maps.Size(50, 50), // scaled size
 		    origin: new google.maps.Point(0,0), // origin
 		    anchor: new google.maps.Point(0, 0) // anchor

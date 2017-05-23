@@ -1,10 +1,13 @@
 <?php
 
 namespace BuscoMoto\Http\Controllers;
-
-class ComprasController extends MainController
+use Illuminate\Http\Request;
+use BuscoMoto\Usuario;
+use Carbon\Carbon;
+use Illuminate\Support\Facades\Auth;
+class UsuarioController extends MainController
 {
-    use RedirectsUsers, ThrottlesLogins;
+    protected $redirectTo = '/';
 
 	/**
      * Create a new controller instance.
@@ -18,219 +21,86 @@ class ComprasController extends MainController
         $this->add_bootstrap();
     }
 
-
-    /**
-     * Show the application registration form.
-     *
-     * @return \Illuminate\Http\Response
-     */
-    public function showRegistrationForm()
+    //view
+    public function formulario_registrase()
     {
-        return view('auth.register');
+        $this->set_title("Registrarse");
+        $this->add_font_awesome();
+        $this->add_css("/css/template/formulario.css");
+        $this->add_css("/css/admin/fondo.css");
+        $this->add_jq_bootstrap_validation();
+        $this->add_jqueryUI();
+        $this->add_js("/js/usuario/crear.js");
+        $data = $this->get_data();
+        return view('usuario.registrarse', $data);
     }
 
-    /**
-     * Handle a registration request for the application.
-     *
-     * @param  \Illuminate\Http\Request  $request
-     * @return \Illuminate\Http\Response
-     */
-    public function register(Request $request)
+    //view
+    public function formulario_login()
     {
-        $this->validator($request->all())->validate();
-
-        event(new Registered($user = $this->create($request->all())));
-
-        $this->guard()->login($user);
-
-        return $this->registered($request, $user)
-                        ?: redirect($this->redirectPath());
-    }
-
-    /**
-     * Get the guard to be used during registration.
-     *
-     * @return \Illuminate\Contracts\Auth\StatefulGuard
-     */
-    protected function guard()
-    {
-        return Auth::guard();
-    }
-
-    /**
-     * The user has been registered.
-     *
-     * @param  \Illuminate\Http\Request  $request
-     * @param  mixed  $user
-     * @return mixed
-     */
-    protected function registered(Request $request, $user)
-    {
-        //
+        $this->set_title("Login");
+        $this->add_font_awesome();
+        $this->add_css("/css/template/formulario.css");
+        $this->add_css("/css/admin/fondo.css");
+        $this->add_jq_bootstrap_validation();
+        $this->add_js("/js/usuario/login.js");
+        $data = $this->get_data();
+        return view('usuario.login', $data);
     }
 
 
 
-    /**
-     * Show the application's login form.
-     *
-     * @return \Illuminate\Http\Response
-     */
-    public function showLoginForm()
-    {
-        return view('auth.login');
-    }
+    //ajax
 
-    /**
-     * Handle a login request to the application.
-     *
-     * @param  \Illuminate\Http\Request  $request
-     * @return \Illuminate\Http\RedirectResponse|\Illuminate\Http\Response
-     */
-    public function login(Request $request)
-    {
-        $this->validateLogin($request);
-
-        // If the class is using the ThrottlesLogins trait, we can automatically throttle
-        // the login attempts for this application. We'll key this by the username and
-        // the IP address of the client making these requests into this application.
-        if ($this->hasTooManyLoginAttempts($request)) {
-            $this->fireLockoutEvent($request);
-
-            return $this->sendLockoutResponse($request);
+    public function registrase(Request $request){
+        $usuario = Usuario::where('email', $request->get('email'));
+        if ($usuario->count()==0){
+            $imagen = $request->file('imagen');
+            $ruta = '/images/usuarios/perfil/';
+            $nombre = sha1(Carbon::now()).'.'.$imagen->guessExtension();
+            $imagen->move(getcwd().$ruta, $nombre);
+            $user = Usuario::create
+            (
+                    [
+                    'nombre' => $request->get('nombre'),
+                    'apellido' => $request->get('apellido'),
+                    'email' => $request->get('email'),
+                    'url_foto_perfil' => $ruta.$nombre,
+                    'password' => bcrypt($request->get('password')),
+                    'tipo' => 'comprador',
+                    'fecha_nacimiento' => $request->get('fecha_nacimiento') 
+                    ]
+            );
+            $header =  array('status' => 'success', 'message' => 'Registro exitoso');
+            $response = array('header' => $header, 'content' => $user);
+            return response()->json($response);
         }
-
-        if ($this->attemptLogin($request)) {
-            return $this->sendLoginResponse($request);
+        else{
+            $header =  array('status' => 'error', 'message' => 'El email ya esta en uso');
+            $response = array('header' => $header, 'content' => array());
+            return response()->json($response);
         }
-
-        // If the login attempt was unsuccessful we will increment the number of attempts
-        // to login and redirect the user back to the login form. Of course, when this
-        // user surpasses their maximum number of attempts they will get locked out.
-        $this->incrementLoginAttempts($request);
-
-        return $this->sendFailedLoginResponse($request);
     }
 
-    /**
-     * Validate the user login request.
-     *
-     * @param  \Illuminate\Http\Request  $request
-     * @return void
-     */
-    protected function validateLogin(Request $request)
+    public function authenticate(Request $request)
     {
-        $this->validate($request, [
-            $this->username() => 'required|string',
-            'password' => 'required|string',
-        ]);
-    }
-
-    /**
-     * Attempt to log the user into the application.
-     *
-     * @param  \Illuminate\Http\Request  $request
-     * @return bool
-     */
-    protected function attemptLogin(Request $request)
-    {
-        return $this->guard()->attempt(
-            $this->credentials($request), $request->has('remember')
-        );
-    }
-
-    /**
-     * Get the needed authorization credentials from the request.
-     *
-     * @param  \Illuminate\Http\Request  $request
-     * @return array
-     */
-    protected function credentials(Request $request)
-    {
-        return $request->only($this->username(), 'password');
-    }
-
-    /**
-     * Send the response after the user was authenticated.
-     *
-     * @param  \Illuminate\Http\Request  $request
-     * @return \Illuminate\Http\Response
-     */
-    protected function sendLoginResponse(Request $request)
-    {
-        $request->session()->regenerate();
-
-        $this->clearLoginAttempts($request);
-
-        return $this->authenticated($request, $this->guard()->user())
-                ?: redirect()->intended($this->redirectPath());
-    }
-
-    /**
-     * The user has been authenticated.
-     *
-     * @param  \Illuminate\Http\Request  $request
-     * @param  mixed  $user
-     * @return mixed
-     */
-    protected function authenticated(Request $request, $user)
-    {
-        //
-    }
-
-    /**
-     * Get the failed login response instance.
-     *
-     * @param  \Illuminate\Http\Request  $request
-     * @return \Illuminate\Http\RedirectResponse
-     */
-    protected function sendFailedLoginResponse(Request $request)
-    {
-        $errors = [$this->username() => trans('auth.failed')];
-
-        if ($request->expectsJson()) {
-            return response()->json($errors, 422);
+        $password = $request->get('password');
+        $email = $request->get('email');
+        if (Auth::attempt(['email' => $email, 'password' => $password])) {
+            $header =  array('status' => 'success', 'message' => 'Login correcto');
+            $response = array('header' => $header, 'content' => array());
+            return response()->json($response);
         }
-
-        return redirect()->back()
-            ->withInput($request->only($this->username(), 'remember'))
-            ->withErrors($errors);
+        else{
+            $header =  array('status' => 'error', 'message' => 'Usuario o contraseña incorrecto');
+            $response = array('header' => $header, 'content' => array());
+            return response()->json($response);
+        }
     }
 
-    /**
-     * Get the login username to be used by the controller.
-     *
-     * @return string
-     */
-    public function username()
+    public function salir()
     {
-        return 'email';
-    }
-
-    /**
-     * Log the user out of the application.
-     *
-     * @param  \Illuminate\Http\Request  $request
-     * @return \Illuminate\Http\Response
-     */
-    public function logout(Request $request)
-    {
-        $this->guard()->logout();
-
-        $request->session()->flush();
-
-        $request->session()->regenerate();
-
+        Auth::logout();
         return redirect('/');
-    }
-
-    /**
-     * Get the guard to be used during authentication.
-     *
-     * @return \Illuminate\Contracts\Auth\StatefulGuard
-     */
-    protected function guard()
-    {
-        return Auth::guard();
     }
 }
