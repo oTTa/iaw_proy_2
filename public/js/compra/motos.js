@@ -28,6 +28,8 @@ $.ajax(settings).done(function (response) {
 
 var color_select = 0;
 var moto_select = null;
+var vendedor_select = null;
+var color_select = null;
 var marcadores = [];
 
 var marcas = [];
@@ -84,6 +86,9 @@ function limpiar_busqueda(){
 	}
 	color_select = 0;
 	moto_select = null;
+	color_select = null;
+	vendedor_select=null;
+	$("#vendedor_mostrar").empty();
 	$("#descargar_moto").removeAttr('download');
 	$("#descargar_moto").removeAttr('href');
 	$("#descargar_json").removeAttr('href');
@@ -117,7 +122,6 @@ function filtrar(motos){
 
 	if (modelo==""){
 		$("#modelo").append('<option data-tokens=""></option>');
-		console.log(motos);
 
 		for (var i = 0; i < motos.length; i++) {
 			if (cumple_filtrado(motos[i], tipo, marca, cilindraje)){
@@ -272,7 +276,50 @@ function preparar_info_window(vendedor){
 	html="<h3 style='text-aling:center'>"+vendedor.nombre+"</h3>";
 	html+="<p><strong>Telefono:</strong> "+vendedor.telefono+"</p>";
 	html+="<p><strong>Dirección:</strong> "+vendedor.direccion+"</p>";
+	html+='<button id="comprar" onclick="elegir_vendedor('+vendedor.id+');" style="margin-top: 10px;" class="btn btn-primary">Elegir</a>';
+	
 	return html;
+}
+
+function preparar_compra(){
+	if (moto_select==null){
+		var html='<div style="text-align: center" class="alert alert-danger" role="alert">';
+		html+='<h3 >Error</h3>';
+		html+='<strong><p>Debes seleccionar una moto para realizar la compra</p></strong>';
+		$("#error_mostrar").html(html);
+	}
+	else{
+		if (vendedor_select==null){
+			var html='<div style="text-align: center" class="alert alert-danger" role="alert">';
+			html+='<h3 >Error</h3>';
+			html+='<strong><p>Debes seleccionar un vendedor para realizar la compra</p></strong>';
+			$("#error_mostrar").html(html);
+		}
+		else{
+			window.location.href = base_url+"/motos/"+moto_select.id+"/colores/"+moto_select.colores[color_select].id+"/vendedores/"+vendedor_select.id+"/preparar_compra";
+		}
+	}
+}
+
+function elegir_vendedor(id){
+	$("#vendedor_mostrar").empty();
+	$("#error_mostrar").empty();
+	i=0;
+	encontre=false;
+	while (!encontre && i<moto_select.vendedores.length){
+		if (moto_select.vendedores[i].id==id){
+			encontre=true;
+			vendedor_select=moto_select.vendedores[i];
+		}
+		i++;
+	}
+	var html='<div style="text-align: center" class="alert alert-info" role="alert">';
+	html+='<h3 >Vendedor</h3>';
+	html+='<strong><p>'+vendedor_select.nombre+'</p></strong>';
+	html+='<p>Telefono: '+vendedor_select.telefono+'</p>';
+	html+='<p>Dirección: '+vendedor_select.direccion+'</p>';
+	html+='</div>';
+	$("#vendedor_mostrar").html(html);
 }
 
 function limpiar_mapa(){

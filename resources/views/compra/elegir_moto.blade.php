@@ -99,7 +99,19 @@
         <div class="col-md-12" id="botones">
           <button type="button" class="col-md-6 col-xs-12 btn btn-danger" onclick="limpiar_busqueda();" ><span class="glyphicon glyphicon-erase" aria-hidden="true"></span> Nueva busqueda</button>
           <a href="#map"  class="col-md-6 col-xs-12 btn btn-info" ><span class="glyphicon glyphicon-map-marker" aria-hidden="true"></span> Ver puntos de venta</a>
-          <button id="comprar" style="margin-top: 10px;" class="col-md-12 col-xs-12 btn btn-warning"> <i class="fa fa-shopping-cart" aria-hidden="true"></i> Comprar</a>
+          <button id="comprar" onclick="preparar_compra();" style="margin-top: 10px;" class="col-md-12 col-xs-12 btn btn-warning"> <i class="fa fa-shopping-cart" aria-hidden="true"></i> Comprar</a>
+       </div>
+
+       <div class="row" id="alertas">
+
+         <div class="col-md-12" id="vendedor_mostrar">
+         
+         </div>
+
+         <div class="col-md-12" id="error_mostrar">
+         
+         </div>
+
        </div>
         
         <hr>

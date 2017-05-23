@@ -27,6 +27,7 @@ Route::get('login', 'UsuarioController@formulario_login')->name('form_login');
 //compra
 Route::get('/', 'CompraController@compra')->name('seleccionar_moto');
 Route::get('/home', 'CompraController@compra')->name('seleccionar_moto');
+Route::get('/motos/{id_moto}/colores/{id_color}/vendedores/{id_vendedor}/preparar_compra', 'CompraController@preparar_compra')->name('preparar_compra');
 
 //motos
 Route::get('motos/compra', 'CompraController@compra')->name('seleccionar_moto');
@@ -96,3 +97,6 @@ Route::get('service/motos/marcas/{id}', 'MarcaServiceController@obtener')->name(
 
 //cilindraje
 Route::get('service/motos/cilindrajes/listar', 'CilindrajeServiceController@listar')->name('service_listar_cilindrajes');
+
+//comprar
+Route::post('service/comprar/realizar_compra', 'CompraServiceController@comprar')->name('service_realizar_compra');

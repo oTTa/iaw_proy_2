@@ -13,6 +13,7 @@ class Compra extends Model
      */
     protected $table = 'compra';
     const CREATED_AT = 'fecha_compra';
+    const UPDATED_AT = null;
 
     /**
      * The attributes that are mass assignable.
