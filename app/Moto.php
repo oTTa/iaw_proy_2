@@ -24,7 +24,7 @@ class Moto extends Model
 
     public function colores()
     {
-    	return $this->hasMany('BuscoMoto\Color','moto_id');
+    	return $this->hasMany('BuscoMoto\Color','id_moto');
     }
 
     public function tipo()

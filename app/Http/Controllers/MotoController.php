@@ -76,4 +76,30 @@ class MotoController extends MainController
         $data = $this->get_data();
         return view('moto.listar', $data);
     }
+
+    /**
+    * Prapara la vista para listar los Vendedores
+    */
+    public function vendedores($id){
+        $moto = Moto::find($id);
+        if ($moto){
+            $this->set_title("vendedores moto");
+            $this->add_font_awesome();
+            $this->add_data_tables();
+            $this->add_js("/js/moto/listar_vendedores.js");
+            $this->add_css("/css/admin/fondo.css");
+            $this->add_css("/css/vendedor/listar.css");
+            $data = $this->get_data();
+            $data['moto']=$moto;
+            return view('moto.vendedores', $data);
+        }
+        else{
+            $this->set_title("Error");
+            $this->add_css("/css/admin/fondo.css");
+            $data=$this->get_data();
+            $data['mensaje']="La moto que intentas editar no existe";
+            return view('templates.error', $data);
+        }
+
+    }
 }

@@ -1,9 +1,9 @@
 $(document).ready(function() {
     init_table();
 });
-
+var tabla=null;
 function init_table(){
-	$('#tbl_accesorios').DataTable( {
+	tabla=$('#tbl_accesorios').DataTable( {
 		ajax: {
 			url: base_url+'/service/accesorios/listar',
 			dataSrc: function(json){
@@ -82,10 +82,31 @@ function init_table(){
 	        { 
 	        	data: 'id',
 	        	render: function ( data, type, full, meta ) {
-    				  return ('<a href="'+base_url+'/accesorios/editar/'+data+'" style="float:right;"><i class="fa fa-pencil"  aria-hidden="true"></i> Editar</a>');
+	        		var html = '<a href="'+base_url+'/accesorios/editar/'+data+'" style="float:right;"><i class="fa fa-pencil"  aria-hidden="true"></i> Editar</a><br/>';
+	        		html += '<div onclick="preparar_borrar('+data+')" style="cursor:pointer; color:red; float:right;" data-toggle="modal" data-target="#modal_borrar" ><i class="fa fa-times" aria-hidden="true"></i> Borrar</div></br>';
+    				return (html);
     			},
     			sortable: false
 	        },
     	]
     });
+}
+
+id_accesorio=null;
+
+function preparar_borrar(id){
+ id_accesorio=id;
+}
+
+function eliminar_accesorio(){
+	var settings = {
+		"async": true,
+		"crossDomain": true,
+		"url": base_url+"/service/accesorios/borrar/"+id_accesorio,
+		"method": "GET",
+	}
+
+	$.ajax(settings).done(function (response) {
+		tabla.ajax.reload();
+	});
 }

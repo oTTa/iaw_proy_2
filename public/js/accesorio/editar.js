@@ -7,7 +7,7 @@ $( document ).ready(function() {
                         },
                         submitSuccess: function($form, event) {
                             event.preventDefault();
-                            crear_accesorio();
+                            editar_accesorio();
 
                         },
                         filter: function() {
@@ -18,33 +18,37 @@ $( document ).ready(function() {
      autocompletar_tipo();
 });
 
-function crear_accesorio(){
-    if ($('#imagen')[0].files[0]==null){
-      $("#error_general").text('debes seleccionar una imagen');
-      $("#error_general").show();
+function editar_accesorio(){
+  data = {
+    "id" : $("#id").val(),
+    "tipo": $("#tipo").val(),
+    "precio": $("#precio").val(),
+    "descripcion": $("#descripcion").val(),
+    "nombre": $("#nombre").val(),
+  }
+
+  var settings = {
+    "async": true,
+    "crossDomain": true,
+    "url": base_url+"/service/accesorios/editar",
+    "method": "POST",
+    "headers": {
+      "content-type": "application/json"
+    },
+    "processData": false,
+    "data": JSON.stringify(data)
+  }
+
+  $.ajax(settings).done(function (response) {
+    if (response.header.status=="success")
+    {
+      $("#main_container").empty();
+    $("#main_container").html('<div class="alert alert-success" role="alert"><i class="fa fa-check" aria-hidden="true"></i> '+response.header.message+'<br/><a href="'+base_url+'/accesorios/listar'+'" class="alert-link">Ver Accesorios</a></div>');
     }
     else{
-      id=$("#id_moto").val();
-      $("#error_general").hide();
-      var formData = new FormData();
-      formData.append('imagen', $('#imagen')[0].files[0]);
-      formData.append('nombre', $('#nombre').val());
-      formData.append('tipo', $('#tipo').val());
-      formData.append('descripcion', $('#descripcion').val());
-      formData.append('precio', $('#precio').val());
-      $.ajax({
-             url : base_url+'/service/accesorios/crear',
-             type : 'POST',
-             data : formData,
-             processData: false,  // tell jQuery not to process the data
-             contentType: false,  // tell jQuery not to set contentType
-             success : function(response) {
-                console.log(response);
-                 $("#main_container").empty();
-                 $("#main_container").html('<div class="alert alert-success" role="alert"><i class="fa fa-check" aria-hidden="true"></i> '+response.header.message+'<br/><a href="'+base_url+'/accesorios/listar'+'" class="alert-link">Ver accesorios</a><br/><a href="'+base_url+'/accesorios/crear" class="alert-link">Agregar otro accesorio</a></div>');
-             }
-      });
-  }
+      $("#error_general").text(response.header.message)
+    }
+  });
 
 }
 

@@ -4,6 +4,8 @@ namespace BuscoMoto\Http\Controllers;
 
 use Illuminate\Http\Request;
 use BuscoMoto\Vendedor;
+use BuscoMoto\Accesorio;
+
 
 class AccesorioController extends MainController
 {
@@ -42,16 +44,16 @@ class AccesorioController extends MainController
     */
     public function editar($id){
         $accesorio = Accesorio::find($id);
-
         if ($accesorio){
             $this->set_title("Editar accesorio");
             $this->add_font_awesome();
             $this->add_css("/css/template/formulario.css");
             $this->add_css("/css/admin/fondo.css");
             $this->add_jq_bootstrap_validation();
+            $this->add_jqueryUI();
             $this->add_js("/js/accesorio/editar.js");
             $data = $this->get_data();
-            $data['id']=$id;
+            $data['accesorio']=$accesorio;
             return view('accesorio.editar', $data);
         }
         else{

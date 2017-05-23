@@ -9,7 +9,7 @@
   <title><?php if ($title=="") echo "BuscoMoto"; else echo $title; ?></title>
 
   <!-- setear el icono -->
-  <link rel="icon" href="<?php if ($icon=="") echo url('/')."/images/moto_icon.png"; else echo $icon; ?>">
+  <link rel="icon" href="<?php if ($icon=="") echo url('/')."/images/motoLogo.png"; else echo $icon; ?>">
 
   <!-- estilos para la barra de navegación -->
   <link rel="stylesheet" href="<?php echo url('/')."/css/template/navbar.css" ?>">
@@ -40,12 +40,16 @@
           <span class="icon-bar"></span>
           <span class="icon-bar"></span>
         </button>
-        <a class="navbar-brand" href="#">BuscoMoto</a>
-        <a class="navbar-brand" href="#"><img style="max-width:90px; margin-top: -12px;" src="<?php echo url('/')."/images/motoLogo.png" ?>"></a>
+        <a class="navbar-brand" href="<?php echo url('/')."/motos/compra" ?>">
+          <img style="max-width:90px; margin-top: -12px;" src="<?php echo url('/')."/images/motoLogo.png" ?>">
+        </a>
+        <a class="navbar-brand" href="<?php echo url('/')."/motos/compra" ?>">
+          BuscoMoto
+        </a>
+        
       </div>
       <div id="navbar" class="collapse navbar-collapse">
         <ul class="nav navbar-nav">
-        <li><a href="<?php echo url('/')."/motos/compra" ?>">Comprar</a></li>
           <li class="dropdown">
             <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">Vendedores <span class="caret"></span></a>
             <ul class="dropdown-menu">

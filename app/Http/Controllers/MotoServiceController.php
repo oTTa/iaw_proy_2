@@ -10,6 +10,7 @@ use BuscoMoto\Marca;
 use BuscoMoto\Tipo;
 use BuscoMoto\Vendedor;
 use BuscoMoto\Color;
+use Illuminate\Support\Facades\DB;
 
 
 class MotoServiceController extends Controller
@@ -109,7 +110,8 @@ class MotoServiceController extends Controller
     public function listar(Request $request){
         $motos=Moto::all();
         foreach ($motos as $moto) {
-            $moto['colores']=Color::where('id_moto', $moto['id'])->get();
+            $moto['colores']=$moto->colores()->get();
+            $moto['vendedores']=$moto->vendedores()->get();
         }
         $header =  array('status' => 'success', 'message' => 'Motos obtenidas correctamente');
         $response = array('header' => $header, 'content' => $motos);
@@ -121,7 +123,8 @@ class MotoServiceController extends Controller
     **/
     public function obtener($id){
         $moto = Moto::find($id);
-        $moto['colores']=Color::where('id_moto', $id)->get();
+        $moto['colores']=$moto->colores()->get();
+        $moto['vendedores']=$moto->vendedores()->get();
         if ($moto){
             $header =  array('status' => 'success', 'message' => 'Moto obtenido correctamente');
             $response = array('header' => $header, 'content' => $moto);
@@ -171,4 +174,65 @@ class MotoServiceController extends Controller
         }
     }
 
+    /**
+    ** agregar vendedor a la moto
+    **/
+    public function agregar_vendedor($id_moto,$id_vendedor){
+        $moto = Moto::find($id_moto);
+        if (!$moto){
+            $header =  array('status' => 'false', 'message' => "No existe la moto");
+            $response = array('header' => $header, 'content' => array());
+            return response()->json($response);
+        }
+        $vendedor = Vendedor::find($id_vendedor);
+        if (!$vendedor){
+            $header =  array('status' => 'false', 'message' => "No existe el vendedor");
+            $response = array('header' => $header, 'content' => array());
+            return response()->json($response);
+        }
+        $vendedor=$moto->vendedores()->where('id',$id_vendedor)->get();
+        if ($vendedor->count()==0){
+            $moto->vendedores()->attach($id_vendedor);
+            $header =  array('status' => 'success', 'message' => "La moto tiene un nuevo vendedor");
+            $response = array('header' => $header, 'content' => array());
+            return response()->json($response);
+        }
+        else{
+            $header =  array('status' => 'success', 'message' => "La moto ya tenia ese vendedor");
+            $response = array('header' => $header, 'content' => array());
+            return response()->json($response);
+        }
+    }
+
+    /**
+    ** agregar vendedor a la moto
+    **/
+    public function eliminar_vendedor($id_moto,$id_vendedor){
+        $moto = Moto::find($id_moto);
+        if (!$moto){
+            $header =  array('status' => 'false', 'message' => "No existe la moto");
+            $response = array('header' => $header, 'content' => array());
+            return response()->json($response);
+        }
+        $vendedor = Vendedor::find($id_vendedor);
+        if (!$vendedor){
+            $header =  array('status' => 'false', 'message' => "No existe el vendedor");
+            $response = array('header' => $header, 'content' => array());
+            return response()->json($response);
+        }
+        $vendedor=$moto->vendedores()->where('id',$id_vendedor)->get();
+        if ($vendedor->count()>0){
+            $moto->vendedores()->detach($id_vendedor);
+            $header =  array('status' => 'success', 'message' => "Vendedor quitado de la moto correctamente");
+            $response = array('header' => $header, 'content' => array());
+            return response()->json($response);
+        }
+        else{
+            $header =  array('status' => 'false', 'message' => "El vendedor no pertenece a la moto");
+            $response = array('header' => $header, 'content' => array());
+            return response()->json($response);
+        }
+    }
+
+    
 }

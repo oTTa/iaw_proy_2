@@ -45,7 +45,7 @@ class AccesorioServiceController  extends Controller
                 'precio' => $request->get('precio')
                 ]
             );
-            $header =  array('status' => 'success', 'message' => 'Articulo creado correctamente');
+            $header =  array('status' => 'success', 'message' => 'Accesorio creado correctamente');
             $response = array('header' => $header, 'content' => $accesorio);
             return response()->json($response);
     }
@@ -78,26 +78,25 @@ class AccesorioServiceController  extends Controller
     }
 
     /**
-    * Crea un nuevo vendedor almacenandolo en la base de datos
+    * edita un accesorio almacenandolo en la base de datos
     **/
     public function editar(Request $request){
         $data = $request->all();
-        $vendedor = Vendedor::find($data['id']);
-        if (!$vendedor){
-            $header =  array('status' => 'false', 'message' => "No existe el vendedor");
+        $accesorio = Accesorio::find($data['id']);
+        if (!$accesorio){
+            $header =  array('status' => 'false', 'message' => "No existe el accesorio");
             $response = array('header' => $header, 'content' => array());
             return response()->json($response);
         }
         else{
-            $vendedor->nombre = $data['nombre'];
-            $vendedor->direccion = $data['direccion'];
-            $vendedor->telefono = $data['telefono'];
-            $vendedor->latitud = $data['latitud'];
-            $vendedor->longitud = $data['longitud'];
-            $vendedor->save();
+            $accesorio->nombre = $data['nombre'];
+            $accesorio->tipo = $data['tipo'];
+            $accesorio->descripcion = $data['descripcion'];
+            $accesorio->precio = $data['precio'];
+            $accesorio->save();
 
-            $header =  array('status' => 'success', 'message' => 'Cambios en el vendedor realizados correctamente');
-            $response = array('header' => $header, 'content' => $data);
+            $header =  array('status' => 'success', 'message' => 'Cambios en el Accesorio realizados correctamente');
+            $response = array('header' => $header, 'content' => $accesorio);
             return response()->json($response);
         }
     }
@@ -126,6 +125,35 @@ class AccesorioServiceController  extends Controller
         }
         else{
             $header =  array('status' => 'false', 'message' => "No existe el vendedor");
+            $response = array('header' => $header, 'content' => array());
+            return response()->json($response);
+        }
+    }
+
+    /**
+    * retorna los vendedores almacenado en la BD
+    **/
+    public function borrar($id){
+        $accesorio = Accesorio::find($id);
+        if ($accesorio){
+            $ruta = getcwd().$accesorio->url_imagen;
+            if(file_exists($ruta))
+            {
+                unlink(realpath($ruta));
+            }
+            $ruta = getcwd().$accesorio->url_thumbnail;
+            if(file_exists($ruta))
+            {
+                unlink(realpath($ruta));
+            }
+
+            Accesorio::destroy($id);
+            $header =  array('status' => 'success', 'message' => 'Accesorio borrado correctamente');
+            $response = array('header' => $header, 'content' => array());
+            return response()->json($response);
+        }
+        else{
+            $header =  array('status' => 'false', 'message' => "No existe el accesorio");
             $response = array('header' => $header, 'content' => array());
             return response()->json($response);
         }

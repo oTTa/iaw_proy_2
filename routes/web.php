@@ -12,18 +12,22 @@
 */
 
 Route::get('/', function () {
-    return view('welcome');
+    return view('compra.elegir_moto');
 });
 
 /////////////////////////
 /* controladores-vista */
 /////////////////////////
 
+//compra
+Route::get('/', 'CompraController@compra')->name('seleccionar_moto');
+
 //motos
 Route::get('motos/compra', 'CompraController@compra')->name('seleccionar_moto');
 Route::get('motos/crear', 'MotoController@crear')->name('crear_moto');
 Route::get('motos/listar', 'MotoController@listar')->name('listar_motos');
 Route::get('motos/editar/{id}', 'MotoController@editar')->name('listar_motos');
+Route::get('motos/vendedores/{id}', 'MotoController@vendedores')->name('listar_vendedores_moto');
 
 //vendedores
 Route::get('vendedores/crear', 'VendedorController@crear')->name('crear_vendedor');
@@ -36,6 +40,7 @@ Route::get('motos/colores/listar/{id}', 'ColorController@listar')->name('listar_
 
 //accesorios
 Route::get('accesorios/crear', 'AccesorioController@crear')->name('crear_accesorio');
+Route::get('accesorios/editar/{id}', 'AccesorioController@editar')->name('crear_accesorio');
 Route::get('accesorios/listar', 'AccesorioController@listar')->name('listar_accesorio');
 
 ///////////////
@@ -50,6 +55,8 @@ Route::get('service/vendedores/{id}', 'VendedorServiceController@obtener')->name
 
 //accesorio
 Route::post('service/accesorios/crear', 'AccesorioServiceController@crear')->name('service_crear_accesorio');
+Route::post('service/accesorios/editar', 'AccesorioServiceController@editar')->name('service_editar_accesorio');
+Route::get('service/accesorios/borrar/{id}', 'AccesorioServiceController@borrar')->name('service_borrar_accesorio');
 Route::get('service/accesorios/listar', 'AccesorioServiceController@listar')->name('service_listar_accesorios');
 Route::get('service/accesorios/tipos/listar', 'AccesorioServiceController@listar_tipos_accesorios')->name('service_listar_tipos_accesorios');
 Route::get('service/accesorios/tipos/{id}', 'AccesorioServiceController@obtener_accesorio')->name('service_obtener_tipos_accesorios');
@@ -60,6 +67,9 @@ Route::post('service/motos/editar', 'MotoServiceController@editar')->name('servi
 Route::get('service/motos/{id}', 'MotoServiceController@obtener')->name('service_obtener_moto');
 Route::get('service/motos/eliminar/{id}', 'MotoServiceController@eliminar')->name('service_obtener_moto');
 Route::get('service/motos/visibilidad/{id}', 'MotoServiceController@cambiar_visibilidad')->name('service_obtener_moto');
+Route::get('service/motos/{id_moto}/vendedores/{id_vendedor}/insertar', 'MotoServiceController@agregar_vendedor')->name('service_agregar_vendedor_moto');
+Route::get('service/motos/{id_moto}/vendedores/{id_vendedor}/eliminar', 'MotoServiceController@eliminar_vendedor')->name('service_eliminar_vendedor_moto');
+
 
 //color
 Route::post('service/motos/color/agregar', 'ColorServiceController@agregar')->name('service_agregar_color');
