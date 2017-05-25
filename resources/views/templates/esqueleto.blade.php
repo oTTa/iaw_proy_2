@@ -96,7 +96,7 @@
                         </p>
                         <div class="divider">
                         </div>
-                        <a href="#" class="btn btn-primary btn-sm active" data-toggle="modal" data-target="#perfil">Ver perfil</a>
+                        <a href="{{url('/')}}/perfil" class="btn btn-primary btn-sm active">Ver perfil</a>
                         <a href="{{url('/')}}/compras" class="btn btn-primary btn-sm active">Compras</a>
                       </div>
                     </div>

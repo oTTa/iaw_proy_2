@@ -1,6 +1,20 @@
 var motos_json ;
 
-var settings = {
+
+
+
+var color_select = 0;
+var moto_select = null;
+var vendedor_select = null;
+var color_select = null;
+var marcadores = [];
+
+var marcas = [];
+var tipos = [];
+var cilindrajes = [];
+
+$(document).ready(function() {
+	var settings = {
   "async": true,
   "crossDomain": true,
   "url": "http://iawproy2.com/service/motos/listar",
@@ -24,20 +38,6 @@ $.ajax(settings).done(function (response) {
     	filtrar(motos_json);
     });
 });
-
-
-var color_select = 0;
-var moto_select = null;
-var vendedor_select = null;
-var color_select = null;
-var marcadores = [];
-
-var marcas = [];
-var tipos = [];
-var cilindrajes = [];
-
-$(document).ready(function() {
-	
 });
 
 function cargar_datos(){
@@ -276,7 +276,7 @@ function preparar_info_window(vendedor){
 	html="<h3 style='text-aling:center'>"+vendedor.nombre+"</h3>";
 	html+="<p><strong>Telefono:</strong> "+vendedor.telefono+"</p>";
 	html+="<p><strong>Dirección:</strong> "+vendedor.direccion+"</p>";
-	html+='<button id="comprar" onclick="elegir_vendedor('+vendedor.id+');" style="margin-top: 10px;" class="btn btn-primary">Elegir</a>';
+	html+='<button id="comprar" onclick="elegir_vendedor('+vendedor.id+');" style="margin-top: 10px;" class="btn btn-primary">Elegir</button>';
 	
 	return html;
 }

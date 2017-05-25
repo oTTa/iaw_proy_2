@@ -23,7 +23,7 @@ function addMarker(position, mapa) {
 	limpiar_mapa();
 
     var marker = new google.maps.Marker({
-        position: position,
+        position: {lat: -34.397, lng: 150.644},
         map: mapa
     });
 

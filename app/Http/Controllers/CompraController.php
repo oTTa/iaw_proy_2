@@ -71,6 +71,7 @@ class CompraController extends MainController
         $this->add_css("/css/compra/elegir_moto.css");
         $this->add_js("/js/compra/accesorios.js");
         $this->add_css("/css/color/listar.css");
+        $this->add_css("/css/admin/fondo.css");
         $this->add_font_awesome();
         $data = $this->get_data();
         $data['vendedor'] = $vendedor;

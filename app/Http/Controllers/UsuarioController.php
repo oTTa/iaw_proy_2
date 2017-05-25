@@ -103,4 +103,28 @@ class UsuarioController extends MainController
         Auth::logout();
         return redirect('/');
     }
+
+    public function perfil(){
+        $user = Auth::user();
+
+        if (!$user){
+            $this->set_title("Login");
+            $this->add_font_awesome();
+            $this->add_css("/css/template/formulario.css");
+            $this->add_css("/css/admin/fondo.css");
+            $this->add_jq_bootstrap_validation();
+            $this->add_js("/js/usuario/login.js");
+            $data = $this->get_data();
+            return view('usuario.login', $data);
+        }
+
+        $this->set_title("Perfil");
+        $this->add_css("/css/admin/fondo.css");
+        $this->add_css("/css/usuario/perfil.css");
+        $this->add_font_awesome();
+        $data = $this->get_data();
+        $data['usuario'] = $user;
+        return view('usuario.perfil', $data);
+
+    }
 }

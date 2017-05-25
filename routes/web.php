@@ -22,6 +22,7 @@ Route::get('/', function () {
 //usuario
 Route::get('registrarse', 'UsuarioController@formulario_registrase')->name('form_registrarse');
 Route::get('login', 'UsuarioController@formulario_login')->name('form_login');
+Route::get('perfil', 'UsuarioController@perfil')->name('perfil');
 
 
 //compra

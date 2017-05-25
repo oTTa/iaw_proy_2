@@ -21,4 +21,8 @@
 
 </div>
 
+<div id="googleMap" style="width:100%;height:400px;"></div>
+<!-- google maps-->
+<script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyBhRS7SnEA8mE-K-viYjtKaj659G9hqSJA&callback=initMap" async defer></script>
+
 @endsection

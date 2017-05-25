@@ -72,6 +72,7 @@ class VendedorController extends MainController
         $this->add_font_awesome();
         $this->add_data_tables();
         $this->add_js("/js/vendedor/listar.js");
+        $this->add_js("/js/vendedor/mapa_listar.js");
         $this->add_css("/css/admin/fondo.css");
         $this->add_css("/css/vendedor/listar.css");
         $data = $this->get_data();
