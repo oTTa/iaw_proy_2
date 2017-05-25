@@ -1,9 +1,30 @@
-accesorios=[];
+$( document ).ready(function() {
+    accesorios=[];
+	total=$('#moto_precio').val();
+});
 
-function agregar_accesorio(id){
-	accesorios.push(id);
-	$('#boton'+id).hide();
-	$('#accesorio'+id).css("background-color","#44836a");;
+function toggle_accesorio(id){
+	precio = $('#precio'+id).text();
+	var index = accesorios.indexOf(id);
+	if (index >= 0) {
+		total = parseFloat(total)-parseFloat(precio);
+		$('#total').text("Total: " +total);
+    	accesorios.splice(index, 1);
+    	$('#boton'+id).removeClass();
+    	$('#boton'+id).addClass('btn btn-block btn-primary');
+    	$('#boton'+id).text("Agregar a la compra");
+    	$('#accesorio'+id).css("background-color","#ffffff");
+	}
+	else
+	{
+		total = parseFloat(total)+parseFloat(precio);
+		$('#total').text("Total: " +total);
+		accesorios.push(id);
+    	$('#boton'+id).removeClass();
+    	$('#boton'+id).addClass('btn btn-block btn-danger');
+		$('#boton'+id).text("Quitar de la compra");
+		$('#accesorio'+id).css("background-color","#e0e0e0");
+	}
 }
 
 function comprar(){

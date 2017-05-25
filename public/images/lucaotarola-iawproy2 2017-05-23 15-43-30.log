@@ -1,0 +1,5 @@
+[DOCKER] Step 1/1 : FROM eclipse/php:5.6
+[DOCKER] 5.6: Pulling from eclipse/php 
+[DOCKER] Digest: sha256:386864b32e13740f51bd8fd06f4c7c1db47bf1b8daa80cdb1206adb1b4a76e9a 
+[DOCKER] Status: Image is up to date for eclipse/php:5.6 
+[DOCKER] ---> ce7444b6184c

@@ -7,6 +7,7 @@ use BuscoMoto\Moto;
 use BuscoMoto\Vendedor;
 use BuscoMoto\Accesorio;
 use BuscoMoto\Color;
+use BuscoMoto\Tipo_accesorio;
 
 class CompraController extends MainController
 {
@@ -40,7 +41,6 @@ class CompraController extends MainController
         $vendedor = Vendedor::find($id_vendedor);
         $color =  Color::find($id_color);
         $accesorios = Accesorio::all();
-        
         $this->set_title("Elegir accesorios");
         $this->add_css("/css/compra/elegir_moto.css");
         $this->add_js("/js/compra/accesorios.js");
@@ -51,6 +51,7 @@ class CompraController extends MainController
         $data['moto'] = $moto;
         $data['color'] = $color;
         $data['accesorios'] = $accesorios;
+        $data['tipo_accesorios'] = Tipo_accesorio::all();
         return view('compra.elegir_accesorios', $data);
     }
 }
