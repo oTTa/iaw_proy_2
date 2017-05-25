@@ -26,17 +26,17 @@ class Compra extends Model
 
     public function usuario()
     {
-        return $this->hasOne('BuscoMoto\Usuario','usuario_id','id');
+        return $this->hasOne('BuscoMoto\Usuario','id','usuario_id');
     }
 
     public function vendedor()
     {
-        return $this->hasOne('BuscoMoto\Vendedor','vendedor_id','id');
+        return $this->hasOne('BuscoMoto\Vendedor','id','vendedor_id');
     }
 
     public function moto_compra()
     {
-        return $this->hasOne('BuscoMoto\Moto_compra','moto_compra_id','id');
+        return $this->hasOne('BuscoMoto\Moto_compra','id','moto_compra_id');
     }
 
     public function accesorios_compra()
