@@ -30,7 +30,7 @@ Route::get('/', 'CompraController@compra')->name('seleccionar_moto');
 Route::get('/home', 'CompraController@compra')->name('seleccionar_moto');
 Route::get('/motos/{id_moto}/colores/{id_color}/vendedores/{id_vendedor}/preparar_compra', 'CompraController@preparar_compra')->name('preparar_compra');
 Route::get('/compras', 'CompraController@listar_compras_usuario')->name('compras_usuario');
-Route::get('/compras/compartida/', 'CompraController@compartida')->name('acceder_compra_compartida');
+Route::get('/compras/compartida/{token}', 'PublicController@compartida')->name('acceder_compra_compartida');
 
 //motos
 Route::get('motos/compra', 'CompraController@compra')->name('seleccionar_moto');

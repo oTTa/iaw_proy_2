@@ -11,9 +11,9 @@ function compartir(e,id_compra){
 	  if (response.header.status=='success'){
 	  	console.log('exito');
 	  	$(e).hide();
-	  	$("#url_compartida").html(response.content.token_compartir);
-	  	$("#url_compartida").html('<strong>Url compartida:</strong> <a href="'+base_url+'/compras/compartida/'+response.content.token_compartir+'">'+base_url+'/compras/compartida/'+response.content.token_compartir+' </a>');
-	  	$("#url_compartida").show()
+	  	$("#url_compartida"+id_compra).html(response.content.token_compartir);
+	  	$("#url_compartida"+id_compra).html('<strong>Url compartida:</strong> <a href="'+base_url+'/compras/compartida/'+response.content.token_compartir+'">'+base_url+'/compras/compartida/'+response.content.token_compartir+' </a>');
+	  	$("#url_compartida"+id_compra).show()
 	  }
 	  if (response.header.status=='error'){
 	  	$("#error").html(response.message);

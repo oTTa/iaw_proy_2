@@ -4,7 +4,7 @@ use Illuminate\Support\Facades\Schema;
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Database\Migrations\Migration;
 
-class AddTokencompartirToCompraTable extends Migration
+class AddTokencompartirToCompraTableHacerunico extends Migration
 {
     /**
      * Run the migrations.
@@ -14,7 +14,7 @@ class AddTokencompartirToCompraTable extends Migration
     public function up()
     {
         Schema::table('compra', function (Blueprint $table) {
-            $table->string("token_compartir",45)->nullable();
+            $table->string("token_compartir",45)->nullable()->unique();
         });
     }
 
