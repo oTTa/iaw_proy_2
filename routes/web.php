@@ -30,6 +30,7 @@ Route::get('/', 'CompraController@compra')->name('seleccionar_moto');
 Route::get('/home', 'CompraController@compra')->name('seleccionar_moto');
 Route::get('/motos/{id_moto}/colores/{id_color}/vendedores/{id_vendedor}/preparar_compra', 'CompraController@preparar_compra')->name('preparar_compra');
 Route::get('/compras', 'CompraController@listar_compras_usuario')->name('compras_usuario');
+Route::get('/compras/compartida/', 'CompraController@compartida')->name('acceder_compra_compartida');
 
 //motos
 Route::get('motos/compra', 'CompraController@compra')->name('seleccionar_moto');
@@ -102,3 +103,5 @@ Route::get('service/motos/cilindrajes/listar', 'CilindrajeServiceController@list
 
 //comprar
 Route::post('service/comprar/realizar_compra', 'CompraServiceController@comprar')->name('service_realizar_compra');
+Route::get('service/comprar/compartir/{id_compra}', 'CompraServiceController@compartir')->name('service_compartir_compra');
+Route::get('service/comprar/no_compartir/{id_compra}', 'CompraServiceController@no_compartir')->name('service_no_compartir_compra');

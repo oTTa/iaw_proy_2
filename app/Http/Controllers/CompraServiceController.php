@@ -88,5 +88,71 @@ class CompraServiceController extends Controller
         return response()->json($response);
     }
 
+    public function compartir($id_compra){
+        $user=Auth::user();
+        $compra = Compra::find($id_compra);
+
+        if (!$compra){
+            $header =  array('status' => 'error', 'message' => 'La compra no existe');
+            $response = array('header' => $header, 'content' => array());
+            return response()->json($response);
+        }
+        $compra_user = Compra::where('usuario_id', $user['id'])->where('id', $id_compra)->get();
+        if ($compra_user->count()==0){
+            $header =  array('status' => 'error', 'message' => 'El usuario no es dueño de la compra');
+            $response = array('header' => $header, 'content' => array());
+            return response()->json($response);
+        }
+
+        if ($compra['token_compartir']!=null){
+            $header =  array('status' => 'error', 'message' => 'Esta compra ya esta compartida');
+            $response = array('header' => $header, 'content' => array());
+            return response()->json($response);
+        }
+
+        $token = sha1($compra.Carbon::now());
+
+        $compra['token_compartir'] = $token;
+
+        $compra->save();
+
+        $header =  array('status' => 'success', 'message' => 'Compra compartida correctamente');
+        $response = array('header' => $header, 'content' => $compra);
+        return response()->json($response);
+    }
+
+    public function no_compartir($id_compra){
+        $user=Auth::user();
+        $compra = Compra::find($id_compra);
+
+        if (!$compra){
+            $header =  array('status' => 'error', 'message' => 'La compra no existe');
+            $response = array('header' => $header, 'content' => array());
+            return response()->json($response);
+        }
+        $compra_user = Compra::where('usuario_id', $user['id'])->where('id', $id_compra)->get();
+        if ($compra_user->count()==0){
+            $header =  array('status' => 'error', 'message' => 'El usuario no es dueño de la compra');
+            $response = array('header' => $header, 'content' => array());
+            return response()->json($response);
+        }
+
+        if ($compra['token_compartir']==null){
+            $header =  array('status' => 'error', 'message' => 'Esta compra no esta compartida');
+            $response = array('header' => $header, 'content' => array());
+            return response()->json($response);
+        }
+
+        $token = sha1($compra.Carbon::now());
+
+        $compra['token_compartir'] = null;
+
+        $compra->save();
+
+        $header =  array('status' => 'success', 'message' => 'Compra no compartida correctamente');
+        $response = array('header' => $header, 'content' => $compra);
+        return response()->json($response);
+    }
+
 
 }

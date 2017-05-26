@@ -27,11 +27,18 @@
 							</center>
 							<center id="precio">
 								<span class="label label-primary" >TOTAL: ${{$total}}</span>
-							</center>
-	
+							</center>	
 							<center id="acciones">
-								<button class="btn btn-default" onclick=""><i class="fa fa-file-pdf-o" aria-hidden="true"></i> Descargar PDF</button>
-								<button class="btn btn-success" onclick=""><i class="fa fa-share-alt" aria-hidden="true"></i> Compartir</button>
+								<p style="color:red; display: none" id="error"></p>
+								<button class="btn btn-default" onclick=""><i class="fa fa-file-pdf-o" aria-hidden="true">
+								</i> Descargar PDF</button>
+								@if ($compra['token_compartir']==null)
+									<button class="btn btn-success" onclick="compartir(this,{{$compra['id']}})"><i class="fa fa-share-alt" aria-hidden="true"></i> Compartir</button>
+									<p id="url_compartida" style="margin-top: 10px; display: none">
+								@else
+									<button class="btn btn-danger" onclick="no_compartir(this,{{$compra['id']}})"><i class="fa fa-share-alt" aria-hidden="true"></i> Dejar de Compartir</button> 
+									<p id="url_compartida{{$compra['id']}}" style="margin-top: 10px;"><strong>Url compartida:</strong> <a href="{{url('/')}}/compras/compartida/{{$compra['token_compartir']}}">{{url('/')}}/compras/compartida/{{$compra['token_compartir']}} </a></p>
+								@endif
 							</center>
 							
 						</div>

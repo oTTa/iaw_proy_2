@@ -21,7 +21,7 @@ class Compra extends Model
      * @var array
      */
     protected $fillable = [
-       						'id', 'usuario_id', 'vendedor_id', 'moto_compra_id', 'fecha_compra'
+       						'id', 'usuario_id', 'vendedor_id', 'moto_compra_id', 'fecha_compra', 'token_compartir'
        					];
 
     public function usuario()
