@@ -12,6 +12,8 @@ use BuscoMoto\Compra;
 use BuscoMoto\Moto_compra;
 use BuscoMoto\Accesorio_Compra;
 use Illuminate\Support\Facades\Auth;
+use Dompdf\Dompdf;
+
 class CompraController extends MainController
 {
 	    /**
@@ -115,4 +117,61 @@ class CompraController extends MainController
 
     }
 
+    public function generar_pdf($id_compra){
+            $user = Auth::user();
+
+            if (!$user){
+                $this->set_title("Login");
+                $this->add_font_awesome();
+                $this->add_css("/css/template/formulario.css");
+                $this->add_css("/css/admin/fondo.css");
+                $this->add_jq_bootstrap_validation();
+                $this->add_js("/js/usuario/login.js");
+                $data = $this->get_data();
+                return view('usuario.login', $data);
+            }
+
+            $compra = Compra::find($id_compra);
+
+            if (!$compra){
+                $this->set_title("Error");
+                $this->add_css("/css/admin/fondo.css");
+                $data=$this->get_data();
+                $data['mensaje']="La compra que quieres descargar no existe";
+                return view('templates.error', $data);
+            }
+            else{
+                $compra['usuario'] = $compra->usuario()->get()[0];
+                $compra['moto'] = $compra->moto_compra()->get()[0];
+                $compra['moto']->color = Color::find($compra['moto']->color_id);
+                $compra['accesorios'] = $compra->accesorios_compra()->get();
+                $compra['vendedor'] = $compra->vendedor()->get()[0];
+
+                $this->set_title("Compras");
+                $this->add_css("/css/admin/fondo.css");
+                $this->add_css("/css/compra/listar_compras.css");
+                $this->add_font_awesome();
+                $data = $this->get_data();
+                $data['compra'] = $compra;
+
+
+
+                // instantiate and use the dompdf class
+                $dompdf = new Dompdf();
+
+                 $view =  \View::make('pdf.pdf_compra',$data)->render();
+                $dompdf = new Dompdf();
+                $dompdf->loadHtml($view);
+
+                // (Optional) Setup the paper size and orientation
+                $dompdf->setPaper('A4');
+
+                // Render the HTML as PDF
+                $dompdf->render();
+
+                // Output the generated PDF to Browser
+                $dompdf->stream();
+
+            }
+    }
 }

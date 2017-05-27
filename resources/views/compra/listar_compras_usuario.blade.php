@@ -30,8 +30,8 @@
 							</center>	
 							<center id="acciones">
 								<p style="color:red; display: none" id="error"></p>
-								<button class="btn btn-default" onclick=""><i class="fa fa-file-pdf-o" aria-hidden="true">
-								</i> Descargar PDF</button>
+								<a href="{{url('/')}}/compras/pdf/{{$compra['id']}}" class="btn btn-default" onclick=""><i class="fa fa-file-pdf-o" aria-hidden="true">
+								</i> Descargar PDF</a>
 								@if ($compra['token_compartir']==null)
 									<button class="btn btn-success" onclick="compartir(this,{{$compra['id']}})"><i class="fa fa-share-alt" aria-hidden="true"></i> Compartir</button>
 									<p id="url_compartida{{$compra['id']}}" style="margin-top: 10px; display: none">
