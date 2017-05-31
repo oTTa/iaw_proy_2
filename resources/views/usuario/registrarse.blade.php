@@ -89,8 +89,12 @@
 
 										<div class="form-group last">
 											<div class="col-md-12">
-												<button class="btn btn-success btn-block">
+												<button id="boton_crear" class="btn btn-success btn-block">
 													<i class="fa fa-user" aria-hidden="true"></i> Registrarse</button>
+												<center id="spinner" style="display: none">
+													<i class="fa fa-spinner fa-pulse fa-3x fa-fw"></i>
+													<span class="sr-only">Loading...</span>
+												</center>
 												</div>
 											</div>
 

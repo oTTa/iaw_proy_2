@@ -32,8 +32,12 @@
 
 	                        <div class="form-group last">
 	                            <div class="col-md-12">
-	                                <button onclick="crearcolor()" class="btn btn-success btn-block">
+	                                <button id="boton_crear" onclick="crearcolor()" class="btn btn-success btn-block">
 	                                    <i class="fa fa-picture-o" aria-hidden="true"></i> Crear color</button>
+	                                    <center id="spinner" style="display: none">
+													<i class="fa fa-spinner fa-pulse fa-3x fa-fw"></i>
+													<span class="sr-only">Loading...</span>
+												</center>
 	                            </div>
 	                        </div>
 

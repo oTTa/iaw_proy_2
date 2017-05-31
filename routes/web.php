@@ -23,6 +23,7 @@ Route::get('/', function () {
 Route::get('registrarse', 'UsuarioController@formulario_registrase')->name('form_registrarse');
 Route::get('login', 'UsuarioController@formulario_login')->name('form_login');
 Route::get('perfil', 'UsuarioController@perfil')->name('perfil');
+Route::get('usuarios/listar', 'AdministracionUsuariosController@listar')->name('listar_usuarios');
 
 
 //compra
@@ -30,6 +31,7 @@ Route::get('/', 'CompraController@compra')->name('seleccionar_moto');
 Route::get('/home', 'CompraController@compra')->name('seleccionar_moto');
 Route::get('/motos/{id_moto}/colores/{id_color}/vendedores/{id_vendedor}/preparar_compra', 'CompraController@preparar_compra')->name('preparar_compra');
 Route::get('/compras', 'CompraController@listar_compras_usuario')->name('compras_usuario');
+Route::get('/compras/usuarios/{id}', 'AdministracionUsuariosController@listar_compras_usuario')->name('compras_usuario_por_admin');
 Route::get('/compras/compartida/{token}', 'PublicController@compartida')->name('acceder_compra_compartida');
 Route::get('/compras/pdf/{id_compra}', 'CompraController@generar_pdf')->name('descargar_pdf_compra');
 
@@ -63,6 +65,8 @@ Route::get('accesorios/listar', 'AccesorioController@listar')->name('listar_acce
 Route::post('/service/usuarios/registrarse', 'UsuarioController@registrase')->name('registrarse');
 Route::post('/service/usuarios/login', 'UsuarioController@authenticate')->name('login');
 Route::get('/service/usuarios/salir', 'UsuarioController@salir')->name('logout');
+Route::get('/service/usuarios/listar', 'AdministracionUsuariosServiceController@listar')->name('listar_usuarios');
+
 
 //vendedores
 Route::post('service/vendedores/crear', 'VendedorServiceController@crear')->name('service_crear_vendedor');

@@ -23,8 +23,9 @@ function crear_usuario(){
       $("#error_general").show();
     }
     else{
-      id=$("#id_moto").val();
       $("#error_general").hide();
+      $("#boton_crear").hide();
+      $("#spinner").show();
       var formData = new FormData();
       var fecha_aux =$('#fecha_nacimiento').val();
       var dia = fecha_aux.substring(0,2);
@@ -52,7 +53,9 @@ function crear_usuario(){
 	            }
 	            else{
 	            	$("#error_general").text(response.header.message);
-      				$("#error_general").show();
+      				  $("#error_general").show();
+                $("#boton_crear").show();
+                $("#spinner").hide();
 	            }
 
              }

@@ -24,6 +24,8 @@ function crear_accesorio(){
       $("#error_general").show();
     }
     else{
+      $("#boton_crear").hide();
+      $("#spinner").show();
       id=$("#id_moto").val();
       $("#error_general").hide();
       var formData = new FormData();
