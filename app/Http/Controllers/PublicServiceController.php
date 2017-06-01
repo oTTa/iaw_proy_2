@@ -34,6 +34,7 @@ class PublicServiceController extends Controller
         $response = array('header' => $header, 'content' => $motos);
         return response()->json($response);
     }
+    
 
 
 }
