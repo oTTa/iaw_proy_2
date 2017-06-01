@@ -5,6 +5,7 @@ namespace BuscoMoto\Http\Controllers;
 use Illuminate\Http\Request;
 use BuscoMoto\Http\Controllers\Controller;
 use BuscoMoto\Vendedor;
+use Illuminate\Support\Facades\Auth;
 
 class VendedorServiceController extends Controller
 {
@@ -18,7 +19,8 @@ class VendedorServiceController extends Controller
      */
     public function __construct()
     {
-        $this->middleware('guest');
+        $this->middleware('auth');
+        $this->middleware('isAdmin');
     }
 
     /**

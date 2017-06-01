@@ -51,11 +51,13 @@
                     @foreach ($accesorios as $accesorio)
 						@if ($accesorio['tipo'] == $tipo['nombre'])
 							<div class="gallery_product col-lg-4 col-md-4 col-sm-4 col-xs-6 filter hdpe" id="accesorio{{$accesorio['id']}}">
-								<img src="{{url('/')}}{{$accesorio['url_thumbnail']}}" class="img-responsive">
+								<center>
+								<img src="{{url('/')}}{{$accesorio['url_thumbnail']}}" class="img-responsive" style="max-width: 250px">
 								<p>{{$accesorio['nombre']}}</p>
 								<p>{{$accesorio['descripcion']}}</p>
 								<p><strong id="precio{{$accesorio['id']}}">{{$accesorio['precio']}}</strong></p>
 								<button id="boton{{$accesorio['id']}}" class="btn btn-block btn-primary" onclick="toggle_accesorio({{$accesorio['id']}})">Agregar a la compra</button>
+								</center>
 							</div>
 						@endif
 

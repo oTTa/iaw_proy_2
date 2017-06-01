@@ -26,6 +26,17 @@ class PublicController extends MainController
         $this->add_bootstrap();
     }
 
+    //HOME DE LA PAGINA
+    public function compra(){
+        $this->set_title("BuscoMoto");
+        $this->add_bootstrap_select();
+        $this->add_css("/css/compra/elegir_moto.css");
+        $this->add_js("/js/compra/motos.js");
+        $this->add_font_awesome();
+        $data = $this->get_data();
+        return view('compra.elegir_moto', $data);
+    }
+
     public function compartida($token){
         $user = Auth::user();
 

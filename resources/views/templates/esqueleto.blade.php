@@ -40,10 +40,10 @@
           <span class="icon-bar"></span>
           <span class="icon-bar"></span>
         </button>
-        <a class="navbar-brand" href="<?php echo url('/')."/motos/compra" ?>">
+        <a class="navbar-brand" href="<?php echo url('/'); ?>">
           <img style="max-width:90px; margin-top: -12px;" src="<?php echo url('/')."/images/motoLogo.png" ?>">
         </a>
-        <a class="navbar-brand" href="<?php echo url('/')."/motos/compra" ?>">
+        <a class="navbar-brand" href="<?php echo url('/'); ?>">
           BuscoMoto
         </a>
         

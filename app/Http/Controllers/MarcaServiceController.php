@@ -18,7 +18,7 @@ class MarcaServiceController extends Controller
      */
     public function __construct()
     {
-        $this->middleware('guest');
+        $this->middleware('auth');
     }
 
     /**

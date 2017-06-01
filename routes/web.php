@@ -11,9 +11,7 @@
 |
 */
 
-Route::get('/', function () {
-    return view('compra.elegir_moto');
-});
+Route::get('/', 'PublicController@compra')->name('inicio');
 
 /////////////////////////
 /* controladores-vista */
@@ -27,7 +25,6 @@ Route::get('usuarios/listar', 'AdministracionUsuariosController@listar')->name('
 
 
 //compra
-Route::get('/', 'CompraController@compra')->name('seleccionar_moto');
 Route::get('/home', 'CompraController@compra')->name('seleccionar_moto');
 Route::get('/motos/{id_moto}/colores/{id_color}/vendedores/{id_vendedor}/preparar_compra', 'CompraController@preparar_compra')->name('preparar_compra');
 Route::get('/compras', 'CompraController@listar_compras_usuario')->name('compras_usuario');
@@ -83,7 +80,7 @@ Route::get('service/accesorios/tipos/listar', 'AccesorioServiceController@listar
 Route::get('service/accesorios/tipos/{id}', 'AccesorioServiceController@obtener_accesorio')->name('service_obtener_tipos_accesorios');
 //moto
 Route::post('service/motos/crear', 'MotoServiceController@crear')->name('service_crear_moto');
-Route::get('service/motos/listar', 'MotoServiceController@listar')->name('service_listar_motos');
+Route::get('service/motos/listar', 'PublicServiceController@listar')->name('service_listar_motos');
 Route::post('service/motos/editar', 'MotoServiceController@editar')->name('service_editar_motos');
 Route::get('service/motos/{id}', 'MotoServiceController@obtener')->name('service_obtener_moto');
 Route::get('service/motos/eliminar/{id}', 'MotoServiceController@eliminar')->name('service_obtener_moto');

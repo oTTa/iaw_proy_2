@@ -4,6 +4,7 @@ namespace BuscoMoto\Http\Controllers;
 
 use Illuminate\Http\Request;
 use BuscoMoto\Vendedor;
+use Illuminate\Support\Facades\Route;
 
 class VendedorController extends MainController
 {
@@ -17,7 +18,8 @@ class VendedorController extends MainController
      */
     public function __construct()
     {
-        $this->middleware('guest');
+        $this->middleware('auth');
+        $this->middleware('isAdmin');
         $this->add_jquery();
         $this->add_bootstrap();
     }

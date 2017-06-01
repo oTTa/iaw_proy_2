@@ -16,7 +16,9 @@ class ColorController extends MainController
      **/
     public function __construct()
     {
-        $this->middleware('guest');
+        $this->middleware('auth');
+        $this->middleware('isAdmin');
+
         $this->add_jquery();
         $this->add_bootstrap();
     }

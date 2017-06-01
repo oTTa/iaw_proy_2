@@ -23,22 +23,12 @@ class CompraController extends MainController
      */
     public function __construct()
     {
-        $this->middleware('guest');
-        //$this->middleware('auth');
+        $this->middleware('auth');
         $this->add_jquery();
         $this->add_bootstrap();
     }
 
-    public function compra(){
-    	$this->set_title("BuscoMoto");
-    	$this->add_bootstrap_select();
-    	$this->add_css("/css/compra/elegir_moto.css");
-    	$this->add_js("/js/compra/motos.js");
-        $this->add_font_awesome();
-    	$data = $this->get_data();
-    	return view('compra.elegir_moto', $data);
-    }
-
+    
     public function preparar_compra($id_moto,$id_color,$id_vendedor){
         $moto = Moto::find($id_moto);
         $vendedor = Vendedor::find($id_vendedor);
