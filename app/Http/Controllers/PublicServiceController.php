@@ -25,7 +25,7 @@ class PublicServiceController extends Controller
     * retorna las motos almacenado en la BD
     **/
     public function listar(Request $request){
-        $motos=Moto::all();
+        $motos=Moto::where('visible',1)->get();
         foreach ($motos as $moto) {
             $moto['colores']=$moto->colores()->get();
             $moto['vendedores']=$moto->vendedores()->get();
