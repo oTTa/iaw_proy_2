@@ -2,8 +2,6 @@
 
 @section('content')
 
-
-
 <div class="container" style="margin-top: 70px;" id="main_container">
 
 	<div class="row">
@@ -91,6 +89,11 @@
 											<div class="col-md-12">
 												<button id="boton_crear" class="btn btn-success btn-block">
 													<i class="fa fa-user" aria-hidden="true"></i> Registrarse</button>
+												<center style="margin-top: 15px;">
+
+													<div style="margin-bottom: 15px;" class="g-signin2" data-onsuccess="onSignIn" data-theme="dark"></div>
+
+												<center>
 												<center id="spinner" style="display: none">
 													<i class="fa fa-spinner fa-pulse fa-3x fa-fw"></i>
 													<span class="sr-only">Loading...</span>
@@ -124,5 +127,6 @@
 							});
 						} );
 					</script>
+
 
 @endsection

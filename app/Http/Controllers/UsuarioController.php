@@ -30,7 +30,9 @@ class UsuarioController extends MainController
         $this->add_css("/css/admin/fondo.css");
         $this->add_jq_bootstrap_validation();
         $this->add_jqueryUI();
+        $this->add_google_login();
         $this->add_js("/js/usuario/crear.js");
+        $this->add_js("/js/usuario/google_registrar.js");
         $data = $this->get_data();
         return view('usuario.registrarse', $data);
     }

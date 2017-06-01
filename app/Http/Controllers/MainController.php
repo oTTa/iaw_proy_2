@@ -8,6 +8,7 @@ class MainController extends Controller
     private $title="";
     private $js = array();
     private $css = array();
+    private $extra = array();
 
  	public function add_js($ruta){
  		array_push($this->js,$ruta);
@@ -15,6 +16,10 @@ class MainController extends Controller
 
  	public function add_css($ruta){
  		array_push($this->css,$ruta);
+ 	}
+
+ 	public function add_extra($extra){
+ 		array_push($this->extra,$extra);
  	}
 
  	public function set_icon($ruta){
@@ -31,6 +36,7 @@ class MainController extends Controller
  		$resu['css'] = $this->css;
  		$resu['icon'] = $this->icon;
  		$resu['title'] = $this->title;
+ 		$resu['extra'] = $this->extra;
  		return $resu;
  	}
 
@@ -75,6 +81,12 @@ class MainController extends Controller
  		array_push($this->css,"/css/colorpicker/color-picker.min.css");
 
  		array_push($this->js,"/js/colorpicker/color-picker.min.js");
+ 	}
+
+ 	public function add_google_login(){
+ 		array_push($this->extra,'<meta name="google-signin-scope" content="profile email">');
+ 		array_push($this->extra,'<meta name="google-signin-client_id" content="815131428435-4d830q1dljs8p8o0jio77rp6elov04o7.apps.googleusercontent.com">');
+ 		array_push($this->extra,'<script src="https://apis.google.com/js/platform.js" async defer></script>');
  	}
  	
  	

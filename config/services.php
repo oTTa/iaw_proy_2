@@ -35,4 +35,10 @@ return [
         'secret' => env('STRIPE_SECRET'),
     ],
 
+    'google' => [
+    'client_id' => '815131428435-4d830q1dljs8p8o0jio77rp6elov04o7.apps.googleusercontent.com',
+    'client_secret' => 'tkKGldLnlFC-cj_lf3d4tRdX',
+    'redirect' => url('/').'/registrarse',
+    ],
+
 ];

@@ -5,6 +5,12 @@
   <meta charset="utf-8">
   <meta http-equiv="X-UA-Compatible" content="IE=edge">
   <meta name="viewport" content="width=device-width, initial-scale=1">
+  <!-- añadir extras -->
+  <?php foreach ($extra as $e): ?>
+    <?php 
+      echo $e;
+    ?>
+  <?php endforeach ?>
 
   <title><?php if ($title=="") echo "BuscoMoto"; else echo $title; ?></title>
 
@@ -28,6 +34,7 @@
   <?php foreach ($js as $ruta): ?>
     <script src="<?php echo url('/').$ruta ?>"></script>
   <?php endforeach ?>
+
 </head>
 
 <body>
